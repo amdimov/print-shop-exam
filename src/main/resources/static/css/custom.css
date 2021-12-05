@@ -1,0 +1,97 @@
+/* ----------------------------------------------------------------
+	Custom CSS
+
+	Add all your Custom Styled CSS here for New Styles or
+	Overwriting Default Theme Styles for Better Handling Updates
+-----------------------------------------------------------------*/
+
+/* Custom Header Size
+—————————————————————–*/
+
+/*Making the megamenu smaller. The main piece of code is in the style.css file*/
+/*.mega-menu-small .mega-menu-content{*/
+/*    width: 690px;*/
+/*}*/
+/*Changing the settings of the first menu item as we need to be hite on hover. The main setting is
+in colors.css ---  .dark .style-3 .menu-container > .menu-item.current > .menu-link
+I set a id to the first <li> - id="heatTransferWhite"
+*/
+.sub-title .menu-container > #heatTransferWhite.menu-item:hover > .menu-link::after,
+.sub-title .menu-container > #heatTransferWhite.menu-item.current > .menu-link::after,
+.page-menu-sub-menu{ background-color: white;}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.spotLB{
+    display: block;
+    padding: 1%;
+}
+.spotLB-none{
+    display: none;
+    padding: 1%;
+}
+
+.product-logo-size{
+    height: 50%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+/*Logout button in form*/
+/*.logout-ul{*/
+/*    display: flex;*/
+/*    height: 12px;*/
+/*    justify-content: center;*/
+/*    flex-direction: row;*/
+/*    border: 1px solid red;*/
+/*}*/
+.logout{
+    height: 40px;
+    padding: 2px;
+    margin: 0;
+    list-style-type: none;
+}
+@media (max-width: 800px) {
+    .logout{
+        height: 40px;
+        padding-right: 15px;
+        margin: 0;
+        list-style-type: none;
+    }
+}
+.logout button{
+    border: 1px solid whitesmoke;
+}
+.logout button > i{
+    color: #e35f5f;
+}
+.logout button:hover{
+    background-color: indianred;
+}
+.logout button:hover i{
+    color: white;
+}
+

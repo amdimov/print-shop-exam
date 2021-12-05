@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+<header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+            <div class="row row justify-content-center col-mb-80">
+                <div class="col-4 center">
+                    <h1 class="heading-block center">403 FORBIDDEN</h1>
+                    <img class="img-fluid img-responsive" src="/images/404.gif">
+                    <h3 style="padding-top: 10px">Go back to <a href="/"><i class="icon-home">Homepage</i></a> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

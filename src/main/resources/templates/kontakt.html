@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="row align-items-stretch col-mb-50 mb-0">
+                    <!-- Contact Form
+                    ============================================= -->
+                    <div class="col-lg-6">
+
+                        <div class="fancy-title title-border">
+                            <h3>Kontaktieren Sie uns</h3>
+                        </div>
+
+                        <div class="form-widget">
+
+                            <div class="form-result"></div>
+
+                            <form class="mb-0" th:action="@{/kontakt}" th:method="post">
+
+                                <div class="form-process">
+                                    <div class="css3-spinner">
+                                        <div class="css3-spinner-scaler"></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 form-group">
+                                        <label for="template-contactform-name">Name <small style="color: red">*</small></label>
+                                        <input type="text" id="name" name="name" required="required" value="" class="sm-form-control required" onchange="checkFill()" />
+                                        <small id="writeName" style="color:red;">Please write your name</small>
+                                        <i class="icon-checkmark" style="color: #2dc26b" id="iconName"></i>
+                                    </div>
+
+                                    <div class="col-md-4 form-group">
+                                        <label for="template-contactform-email">E-Mail <small style="color: red">*</small></label>
+                                        <input type="email" id = "email1" name="email1" required="required" value="" class="required email sm-form-control" onchange="checkFill()" />
+                                        <small id="writeEmail1" style="color:red;">Please write your email</small>
+                                        <i class="icon-checkmark" style="color: #2dc26b" id="iconEmail1"></i>
+                                    </div>
+
+                                    <div class="col-md-4 form-group">
+                                        <label for="template-contactform-phone">E-Mail bestätigen<small style="color: red">*</small></label>
+                                        <input type="email" id="email2" name="email2" required="required" value="" class="sm-form-control" onchange="checkFill()" />
+                                        <small id="writeEmail2" style="color:red;">Please rewrite your email again</small>
+                                        <i class="icon-checkmark" style="color: #2dc26b" id="iconEmail2"></i>
+                                    </div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-md-8 form-group">
+                                        <label for="template-contactform-subject">Subject</label>
+                                        <input type="text" id="subject" name="subject" value="" class="required sm-form-control" />
+                                    </div>
+
+                                    <div class="col-md-4 form-group">
+                                        <label for="template-contactform-service">Wie haben Sie von uns erfahren</label>
+                                        <select name="reference" class="sm-form-control">
+                                            <option value="">-- Select One --</option>
+                                            <option value="Google">Google</option>
+                                            <option value="Recommendation">Empfehlung</option>
+                                            <option value="Business Catalog">Geschäftskatalog</option>
+                                            <option value="Ad">Werbung</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-12 form-group">
+                                        <label for="template-contactform-message">Message</label>
+                                        <textarea class="required sm-form-control" id="message" name="message" rows="6" cols="30" onchange="checkFill()" onkeyup="checkFill()"></textarea>
+                                        <div id="charNum"></div>
+                                        <small id="writeMessage" style="color:red;" value="Empty message">Please write you message</small>
+                                        <i class="icon-checkmark" style="color: #2dc26b" id="iconMessage"></i>
+                                    </div>
+
+
+
+                                    <div class="col-12 form-group">
+                                        <button name="submit" id="submit" type="submit" tabindex="5" value="Submit" class="button button-3d m-0" onchange="checkFill()">SEND</button>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+                    </div><!-- Contact Form End -->
+
+                    <!-- Google Map
+                    ============================================= -->
+                    <div class="col-lg-6 min-vh-50">
+                        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ8QnpA7dIqEcRhlzkQO0-4cs&key=AIzaSyDL9R13amZ2sJsS1Mi2Q2ip46T9IOS845o" allowfullscreen></iframe>
+                    </div><!-- Google Map End -->
+                </div>
+
+                <!-- Contact Info
+                ============================================= -->
+                <div class="row col-mb-50">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="feature-box fbox-center fbox-bg fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><i class="icon-map-marker2"></i></a>
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Repräsentanz<span class="subtitle">House A, 1st floor, Edisonstraße 63
+Berlin, Berlin, 12459, Deutschland</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="feature-box fbox-center fbox-bg fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><i class="icon-map-marker1"></i></a>
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Herstellung<span class="subtitle">Megaprint Transfers OOD
+Bulgaria, Varna, Gustav Vaigand 9
+MwSt.-Nr.: BG148051297
+</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="feature-box fbox-center fbox-bg fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><i class="icon-email3"></i></a>
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Schreiben Sie uns<span class="subtitle">office1@transferhall.de</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="feature-box fbox-center fbox-bg fbox-plain">
+                            <div class="fbox-icon">
+                                <a href="#"><i class="icon-phone3"></i></a>
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Rufen Sie uns an<span class="subtitle">+359894611026</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Contact Info End -->
+
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+<!-- Validation -->
+<script>
+    function checkFill() {
+        let releaseButton = true;
+        let name = document.getElementById("name");
+        let writeName = document.getElementById("writeName");
+        let iconName = document.getElementById("iconName");
+
+        let email1 = document.getElementById("email1");
+        let writeEmail1 = document.getElementById("writeEmail1");
+        let iconEmail1 = document.getElementById("iconEmail1");
+
+        let email2 = document.getElementById("email2");
+        let writeEmail2 = document.getElementById("writeEmail2");
+        let iconEmail2 = document.getElementById("iconEmail2");
+
+        let message = document.getElementById("message");
+        let writeMessage = document.getElementById("writeMessage");
+        let iconMessage = document.getElementById("iconMessage");
+
+        let count = 0;
+        let submit = document.getElementById("submit");
+
+        if (name.value === "") {
+            writeName.style.display = "block";
+            iconName.style.display = "none";
+        } else {
+            writeName.style.display = "none";
+            iconName.style.display = "block";
+            count++;
+        }
+
+        if (email1.value === "") {
+            writeEmail1.style.display = "block";
+            iconEmail1.style.display = "none";
+        } else {
+            writeEmail1.style.display = "none";
+            iconEmail1.style.display = "block";
+            count++;
+        }
+
+        if (email2.value !== email1.value || email2.value === ""){
+            writeEmail2.style.display = "block";
+            iconEmail2.style.display = "none";
+        }else {
+            writeEmail2.style.display = "none";
+            iconEmail2.style.display = "block";
+            count++;
+        }
+
+        if (message.value === "") {
+            writeMessage.style.display = "block";
+            iconMessage.style.display = "none";
+        } else {
+            writeMessage.style.display = "none";
+            iconMessage.style.display = "block";
+            count++;
+        }
+
+
+        if(count === 4){
+            releaseButton = false;
+        }
+        if(releaseButton){
+            submit.style.backgroundColor = "grey";
+            submit.disabled = true;
+        }else{
+            submit.disabled = false;
+            submit.style.backgroundColor = "red";
+        }
+    }
+</script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

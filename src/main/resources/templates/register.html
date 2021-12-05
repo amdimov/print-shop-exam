@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+  <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+  <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+  <!-- Content
+      ============================================= -->
+  <section id="content">
+    <div class="content-wrap py-0">
+
+      <div class="section dark p-0 m-0 h-100 position-absolute"></div>
+
+      <div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
+        <div class="vertical-middle">
+          <div class="container py-5">
+
+            <div class="card mx-auto rounded-0 border-0" style="max-width: 800px;">
+              <div class="card-body" style="padding: 40px;">
+                <form th:action="@{/register}" th:method="post" th:object="${userRegisterBind}">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="firstName">First Name</label>
+                      <input th:field="*{firstName}" th:errorclass="'is-invalid bg-warning'" type="text" class="form-control" id="firstName" placeholder="First Name">
+                      <span class="invalid-feedback" th:errors="*{firstName}">Error message</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="lastName">Last Name</label>
+                      <input th:field="*{lastName}" th:errorclass="'is-invalid bg-warning'" type="text" class="form-control" id="lastName" placeholder="Last Name">
+                      <span class="invalid-feedback" th:errors="*{lastName}">Error message</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="email">Email</label>
+                      <input th:field="*{email}" th:errorclass="'is-invalid bg-warning'"  type="email" class="form-control" id="email" placeholder="Email">
+                      <span class="invalid-feedback" th:errors="*{email}">Error message</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="companyName">Company Name</label>
+                      <input th:field="*{companyName}" th:errorclass="'is-invalid bg-warning'"  type="text" class="form-control" id="companyName" placeholder="Company">
+                      <span class="invalid-feedback" th:errors="*{companyName}">Error message</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="password">Password</label>
+                      <input th:field="*{password}" th:errorclass="'is-invalid bg-warning'"  type="password" class="form-control" id="password" placeholder="Password">
+                      <span class="invalid-feedback" th:errors="*{password}">Error message</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <input th:field="*{confirmPassword}" th:errorclass="'is-invalid bg-warning'"  type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+
+                <span style="color: red">
+                                    </span>
+
+                <div class="line line-sm"></div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- #content end -->
+
+  <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

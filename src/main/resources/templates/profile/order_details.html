@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <!--    <section>-->
+    <!--        <div class="container clearfix" th:object="${order}">-->
+    <!--            <div class="row">-->
+    <!--                <div class="col-1">-->
+    <!--                </div>-->
+    <!--                <div class="col-10 align-content-center justify-content-center text-center">-->
+    <!--                        <h4 class="center" style="font-size: 20px;" th:text="|*{orderCode} - Offer Details|"></h4><br>-->
+    <!--                        <p class="center px-0" th:text="|Description: *{orderName} - *{transferCategory.name()}|"></p><br>-->
+    <!--                        <p class="center px-0">Created on: <span th:text="*{#temporals.format(created, 'dd-MM-yyyy HH:ss')}"></span></p><br>-->
+    <!--                        <p class="center px-0">Required for: <span th:text="*{deadline} ? *{#temporals.format(deadline, 'dd-MM-yyyy')} : 'No Deadline'"></span></p><br>-->
+    <!--                    &lt;!&ndash;                    <p th:text="|Created on ${#temporals.format(*{created.toString()}, 'dd-MMM-yyyy')}|"></p><br>&ndash;&gt;-->
+    <!--                    <a target="_blank" th:href="*{fileUrl}"><button class="btn btn-success">YOUR FILE</button></a>-->
+    <!--                </div>-->
+    <!--                <div class="col-1">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </section>-->
+    <!-- Content
+		============================================= -->
+    <section id="content">
+        <div class="content-wrap" th:object="${order}">
+
+            <div class="container center clearfix">
+
+                <div class="heading-block center">
+                    <h1>Order Details</h1>
+                    <span th:text="|Code: *{orderCode}|">This is a Blank Page</span>
+                    <span style="color: lightcoral" th:text="|Status: *{orderStatus.name()}|">This is a Blank Page</span>
+                </div>
+
+                <p>
+                    <span th:text="|Order: *{orderName} - *{transferCategory.name()}|"></span><br>
+                    <span th:text="|Quantity: *{quantity}|"></span><br>
+                    <span>Created on: <span th:text="*{#temporals.format(created, 'dd-MM-yyyy HH:ss')}"></span></span><br>
+                    <span>Required for: <span
+                            th:text="*{deadline} ? *{#temporals.format(deadline, 'dd-MM-yyyy')} : 'No Deadline'"></span></span><br>
+                    <span>Apparel Color: <span th:text="*{apparelColor}"></span></span><br>
+                    <span>Message: <span th:text="*{orderDescription}"></span></span><br>
+                    <a target="_blank" th:href="*{fileUrl}"><button class="btn btn-info">YOUR FILE</button></a><br>
+                </p>
+                <div class="divider divider-sm"></div>
+                <a href="#" class="button button-desc button-border button-rounded center"><div>Proforma Invoice</div><span>You can check your quote here</span></a><br>
+<!--                <p>-->
+<!--                    <span>Price per unit: <span th:text="*{pricePerUnit} ? *{pricePerUnit} : 'Pending'"></span></span><br>-->
+<!--                    <span>Shipping cost: <span th:text="*{shippingCost} ? *{shippingCost} : 'Pending'"></span></span><br>-->
+<!--                    <span>Total price: <span th:text="*{totalPrice} ? *{totalPrice} : 'Pending'"></span></span><br>-->
+<!--                </p>-->
+                <a href="/user/profile#tab-quote" class="btn btn-secondary topmargin-sm">&lArr; Back to your Profile</a>
+                <a href="/user/profile/confirm/{id}" class="btn btn-success topmargin-sm">Confirm</a>
+                <a href="/user/profile/cancel/{id}" class="btn btn-danger topmargin-sm">Cancel</a>
+                <a href="/user/profile/reorder/{id}" th:if="*{orderStatus.name() == 'DELIVERED'}" class="btn btn-warning topmargin-sm"><i class="icon-refresh"></i>Reorder</a>
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

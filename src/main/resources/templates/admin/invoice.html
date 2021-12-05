@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <!-- Content
+		============================================= -->
+    <section id="content">
+        <div class="content-wrap py-0">
+
+            <div class="section dark p-0 m-0 h-100 position-absolute"></div>
+
+            <div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
+                <div class="vertical-middle">
+                    <div class="container py-5">
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- #content end -->
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

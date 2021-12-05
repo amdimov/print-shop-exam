@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <!-- Content
+		============================================= -->
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div id="portfolio-ajax-wrap">
+                    <div id="portfolio-ajax-container"></div>
+                </div>
+                <div class="col-9 center pb-4 pl-0">
+                    <div class="rounded" >
+                        <h1 class="rounded" data-animate="fadeInUp" style="color: #e35f5f; background-color: black">TRANSFERGALERIE</h1>
+                    </div>
+                </div>
+
+                <!-- Portfolio Items
+                ============================================= -->
+                <div id="portfolio" class="portfolio portfolio-ajax row grid-container gutter-20" data-layout="fitRows">
+
+                    <!--  STANDARD IMAGE-->
+                    <!-- Portfolio Item: Start -->
+                    <article
+                            th:each="e : ${image}" th:object="${e}"
+                            class="portfolio-item col-lg-3 col-md-4 col-sm-6 col-12 pf-media pf-icons">
+                        <!-- Grid Inner: Start -->
+                        <div class="grid-inner">
+                            <!--  SINGLE IMAGE-->
+                            <!-- Image: Start -->
+                            <th:block th:if="${e.videoLink.isEmpty()}">
+                            <div class="portfolio-image">
+                                <img th:src="*{imageFile}" th:alt="*{altTag}">
+                                <!-- Overlay: Start -->
+                                <div class="bg-overlay">
+                                    <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+                                        <a th:href="*{imageFile}" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="image"><i class="icon-line-plus"></i></a>
+                                        <form th:action="@{/admin/content/delete-image}" th:method="delete" sec:authorize="hasRole('ADMIN')"><input type="hidden" name="publicId" th:value="*{publicId}"><button type="submit" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeInUpSmall" data-hover-speed="350"><i class="icon-trash"></i></button></form>
+                                    </div>
+                                    <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                </div>
+                                <!-- Overlay: End -->
+                            </div>
+                            <!-- Image: End -->
+                            </th:block>
+
+                            <!-- VIDEO -->
+                            <th:block th:if="${!e.videoLink.isEmpty()}">
+                                <div class="portfolio-image">
+                                    <img th:src="*{imageFile}" th:alt="*{altTag}">
+                                    <div class="bg-overlay">
+                                        <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+                                            <a th:href="*{videoLink}" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="iframe"><i class="icon-line-play" style="color: #a71d2a"></i></a>
+                                        </div>
+                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                    </div>
+                                </div>
+                            </th:block>
+
+                            <!-- Decription: Start -->
+                            <div class="portfolio-desc">
+                                <h3 th:text="*{imageDescription}">MultiSpot Plastisol-Transfer</h3>
+                                    <a th:href="@{/multi-spot}" th:if="*{category == 'MULTISPOT'}" target="_blank" th:text="|Gehen Sie zu *{category}|"></a></b></span>
+                                    <a th:href="@{/single-spot}" th:if="*{category == 'SINGLESPOT'}" target="_blank" th:text="|Gehen Sie zu *{category}|"></a></b></span>
+                                    <a th:href="@{/photo-silk}" th:if="*{category == 'PHOTOSILK'}" target="_blank" th:text="|Gehen Sie zu *{category}|"></a></b></span>
+                                    <a th:href="@{/digital}" th:if="*{category == 'DIGITAL'}" target="_blank" th:text="|Gehen Sie zu *{category}|"></a></b></span>
+
+                            </div>
+                            <!-- Description: Start -->
+                        </div>
+                        <!-- Grid Inner: End -->
+                    </article>
+                    <!-- Portfolio Item: End -->
+
+                </div><!-- #portfolio end -->
+                <div class="center" th:if="${pageNumbers}" th:object="${image}">
+                    <ul class="pagination pagination-rounded pagination-3d pagination-lg">
+<!--                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"> <span-->
+<!--                                aria-hidden="true">&laquo;</span></a></li>-->
+                        <li th:each="e : ${pageNumbers}" class="page-item" th:classappend="${e == image.number+1} ? active"><a class="page-link" th:text="${e}"  th:href="@{/transfer-galerie/{pageNo}(pageNo = ${e}) }">1</a></li>
+
+<!--                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

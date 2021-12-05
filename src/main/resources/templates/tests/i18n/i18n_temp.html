@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="get">
+    <label th:text="#{language}" for="lang"></label>
+    <select
+            onchange="this.form.submit()"
+            id="lang"
+            name="lang">
+        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+        <option value="de_DE" th:selected="${#locale.toString()} == 'de_DE'">Deutsch</option>
+        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+    </select>
+</form>
+
+<h1 th:text="#{greeting}"></h1>
+</body>
+</html>

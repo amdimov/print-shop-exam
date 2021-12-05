@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <div class="container">
+
+    </div>
+</body>
+
+<script>
+    // function run(api) {
+    //     function getApi() {
+    //         return fetch(api).then(e => e.json());
+    //     }
+    //
+    //     let counter = 0;
+    //     let jsonSize = 0;
+    //     let initialValue = 0;
+    //     let firstVisit = true;
+    //     let container = document.querySelector('.container');
+    //
+    //     function fetchData() {
+    //         let api = getApi();
+    //         let sum = 0;
+    //
+    //         api.then(order => order.map(
+    //             result => {
+    //                 if (order.length > counter && firstVisit) {
+    //                     ++counter;
+    //                     container.innerHTML += `<div>${result.orderDescription}</div><br> ${order.length}`;
+    //                 }
+    //                 if (order.length > counter && !firstVisit) {
+    //                     ++counter;
+    //                     container.innerHTML += `<div>${order[order.length - 1].orderDescription}</div><br> ${order.length}`;
+    //                     setTimeout(()=> console.log("wait"), 1000)
+    //                 }
+    //                 if (order.length === counter) {
+    //                     firstVisit = false;
+    //                 }
+    //             }
+    //         ));
+    //         console.log(html);
+    //     }
+    //
+    //     setInterval(() => {
+    //         fetchData();
+    //     }, 3000);
+    // }
+    // run("http://localhost:8080/api/orders");
+</script>
+</html>

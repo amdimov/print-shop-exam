@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Page Sub Menu
+		============================================= -->
+<div id="page-menu" data-mobile-sticky="true" th:fragment="admin_menu">
+    <div id="page-menu-wrap">
+        <div class="container">
+            <div class="page-menu-row">
+
+                <div class="page-menu-title">Hi, <span>BOSS</span></div>
+
+                <nav class="page-menu-nav">
+                    <ul class="page-menu-container">
+                        <li class="page-menu-item"><a href="/admin"><div>Dashboard</div></a></li>
+                        <li class="page-menu-item"><a href="#"><div>Content</div></a>
+                            <ul class="page-menu-sub-menu">
+                                <li class="page-menu-item"><a href="/admin/content/upload-image"><div>Upload Portfolio Image</div></a></li>
+                                <li class="page-menu-item"><a href="/admin/content/create-new-service-page"><div>Create New Service Page</div></a></li>
+<!--                                <li class="page-menu-item"><a href="/admin/manage-images"><div>Manage images</div></a></li>-->
+                            </ul>
+                        </li>
+                        <li class="page-menu-item"><a href="#"><div>Users</div></a>
+                            <ul class="page-menu-sub-menu">
+                                <li class="page-menu-item"><a href="/admin/users/manage-orders"><div>Manage Orders</div></a></li>
+                                <li class="page-menu-item"><a href="/admin/users/edit-user-info"><div>Edit User Information</div></a></li>
+                                <!--                                <li class="page-menu-item"><a href="/admin/manage-images"><div>Manage images</div></a></li>-->
+                            </ul>
+                        </li>
+                        <li class="page-menu-item"><a href="#"><div>Models</div></a></li>
+                        <li class="page-menu-item"><a href="#"><div>Compare</div></a></li>
+                        <li class="page-menu-item"><a href="#"><div>Build</div></a></li>
+                        <li class="page-menu-item"><a href="#"><div>Order</div></a></li>
+                    </ul>
+                </nav>
+
+                <div id="page-menu-trigger"><i class="icon-reorder"></i></div>
+
+            </div>
+        </div>
+    </div>
+</div><!-- #page-menu end -->
+
+</body>
+</html>

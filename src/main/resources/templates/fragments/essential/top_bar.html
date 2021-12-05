@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+
+<!-- Top Bar
+        ============================================= -->
+<div id="top-bar" th:fragment="top_bar">
+    <div class="container clearfix">
+
+        <div class="row justify-content-between">
+            <div class="col-12 col-md-auto ml-4">
+
+                <!-- Top Links
+                ============================================= -->
+                <div class="top-links on-click">
+                    <ul class="top-links-container">
+<!--                        <li class="top-links-item"><a href="/">Home</a></li>-->
+                        <li class="pl-3"><img src="/images/ph.png" alt="Phthalate Frei" style="height: 2.5em;"></li>
+                        <li class="pl-4"><img src="/images/druck_check.png" alt="Frei, Pantone Farbe zu wahlen" style="height: 2em;"></li>
+                        <li class="pl-5" style="color: #666666"><b><i class="icon-note"></i><u>  Mitteilung: Frohes neues Jahr! Wir sind zurück. Lieferzeit 2-5 Tage</u></b></li>
+                    </ul>
+                </div><!-- .top-links end -->
+            </div>
+
+
+            <ul class="logout-ul top-links-container">
+               <li sec:authorize="!isAuthenticated()" class="top-links-item  text-center"><a href="/login"> <i class="icon-user4" style="color: #e35f5f"></i>Login</a></li>
+               <li sec:authorize="isAuthenticated()" class="top-links-item text-center" ><a href="/user/profile"><i class="icon-user4" style="color: #e35f5f"></i><span th:text="${#authentication.getPrincipal().getCompanyName()}"></span></a></li>
+               <li sec:authorize="hasRole('ADMIN')" class="top-links-item text-center" ><a href="/admin"><span>ADMIN</span></a></li>
+               <li sec:authorize="isAuthenticated()" class="text-center logout"><form th:action="@{/logout}" th:method="post"><button title="LOGOUT" class="btn" type="submit"><i class="icon-off"></i></button></form></li>
+            </ul>
+
+
+        </div>
+
+    </div>
+</div><!-- #top-bar end -->
+</body>
+</html>

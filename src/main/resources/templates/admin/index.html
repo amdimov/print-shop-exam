@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+    <div th:replace="admin/fragments/admin_menu :: admin_menu"></div>
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <div th:object="${userStatistics}">
+                    <p>Registered Users: <span th:text="*{numberOfUsers}"></span></p>
+                    <p>Total Orders: <span th:text="*{totalNumberOfOrders}"></span></p>
+                    <p>Number of pending orders: <span th:text="*{numberOfPendingOrders}"></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

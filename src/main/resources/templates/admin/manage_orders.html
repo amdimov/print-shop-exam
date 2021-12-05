@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+    <div th:replace="admin/fragments/admin_menu :: admin_menu"></div>
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <h1>Manage Orders</h1>
+
+                <h3>Users with <span><b>PENDING</b></span> orders</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Company</th>
+                            <th>Email</th>
+                            <th>Quote Orders</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${pendingUsers}" th:object="${user}">
+                            <td th:text="*{id}">1</td>
+                            <td th:text="*{companyName}">Table cell</td>
+                            <td th:text="*{email}">Table cell</td>
+                            <td><a
+                                   th:href="@{/admin/users/manage-orders/order/{id}(id = *{id})}">
+                                <button class="btn btn-success">Quote Inquiry
+                                </button>
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

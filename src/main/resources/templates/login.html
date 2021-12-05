@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <!-- Content
+		============================================= -->
+    <section id="content">
+        <div class="content-wrap py-0">
+
+            <div class="section dark p-0 m-0 h-100 position-absolute"></div>
+
+            <div class="section bg-transparent min-vh-100 p-0 m-0 d-flex">
+                <div class="vertical-middle">
+                    <div class="container py-5">
+
+                        <div class="card mx-auto rounded-0 border-0" style="max-width: 400px;">
+                            <div class="card-body" style="padding: 40px;">
+                                <form id="login-form" name="login-form" class="mb-0" th:method="post" th:action="@{/login}">
+                                    <h3>Login to your Account</h3>
+
+                                    <div class="row">
+                                        <div class="col-12 form-group">
+                                            <label for="login-form-username">Email:</label>
+                                            <input type="text" id="login-form-username"
+                                                   name="username"
+                                                   class="form-control not-dark" />
+                                        </div>
+
+                                        <div class="col-12 form-group">
+                                            <label for="login-form-password">Password:</label>
+                                            <input type="password" id="login-form-password"
+                                                   name="password"
+                                                   class="form-control not-dark" />
+                                            <span   class="invalid-feedback errors alert alert-danger"></span>
+                                        </div>
+                                        <div class="col-12 form-group mb-0">
+                                            <button class="button button-3d button-black m-0" id="submit" name="login-form-submit" value="login">Login</button>
+                                            <a href="/register" class="float-end pl-2">or Sign In</a>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                    <span style="color: red">
+                                    </span>
+
+                                <div class="line line-sm"></div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- #content end -->
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

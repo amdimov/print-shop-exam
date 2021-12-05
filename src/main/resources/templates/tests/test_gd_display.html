@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+<div th:each="e : ${images}" th:object="${e}">
+    <img th:src="*{url}">
+    <form th:action="@{/test-upload-drive/display/delete}" th:method="delete" >
+        <input type="submit" value="DELETE">
+        <input type="hidden" th:value="*{publicId}" name="publicId">
+    </form>
+</div>
+
+</body>
+</html>

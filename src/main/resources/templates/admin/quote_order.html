@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+    <div th:replace="admin/fragments/admin_menu :: admin_menu"></div>
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix" th:object="${user}">
+                <h1>Manage Orders of <span th:text="*{companyName}"></span></h1>
+                <h3><span><b>PENDING:</b></span></h3>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ID</th>
+                            <th>Code</th>
+                            <th>Created</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Deadline</th>
+                            <th>Category</th>
+                            <th>Client File</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form th:method="get" th:action="@{/admin/users/manage-orders/invoice-creator}">
+                        <tr th:each="order : ${orderView}" th:object="${order}">
+                            <td><input type="checkbox" name="order[]" th:value="*{id}"></td>
+                            <td th:text="*{id}">1</td>
+                            <td th:text="*{orderCode}">Code</td>
+                            <td><code th:text="*{#temporals.format(created, 'dd-MM-yyyy HH:ss')}">5/23/2021</code></td>
+                            <td th:text="*{orderName}">Table cell</td>
+                            <td th:text="|*{quantity} pcs|">Table cell</td>
+                            <td th:text="*{orderStatus}">Table cell</td>
+                            <td><code th:text="*{deadline} ? *{#temporals.format(deadline, 'dd-MM-yyyy')} : 'No Deadline'">5/23/2021</code></td>
+                            <td th:text="*{transferCategory}"></td>
+                            <td><th:block th:if="*{fileUrl}">
+                                <a target="_blank" th:href="*{fileUrl}"><button type="button" class="btn btn-info">FILE</button></a>
+                                </th:block>
+                            </td>
+                        </tr>
+                            <input type="submit" th:value="SUBMIT">
+                            <input type="hidden" th:value="${user.id}" name="userId">
+                            <span th:if="${orderEmpty}" style="color: red">Please select an order</span>
+                        </form>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

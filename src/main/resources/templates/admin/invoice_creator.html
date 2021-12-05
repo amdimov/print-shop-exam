@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+    <div th:replace="admin/fragments/admin_menu :: admin_menu"></div>
+
+    <section id="content" th:object="${userDetails}">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <h1>Create a Proforma Invoice to <span th:text="*{companyName}">Company</span></h1>
+                <div class="row col-mb-50">
+
+                    <div class="col-md-6">
+                        <h4>Invoice To:</h4>
+                        <b><span th:text="|Company: *{invoiceDetails.companyName}|"></span></b><br>
+                        <span th:text="|Receiver: *{invoiceDetails.nameIssuedTo}|"></span><br>
+                        <span th:text="|VAT: *{invoiceDetails.vatNumber}|"></span><br>
+                        <span th:text="|Address: *{invoiceDetails.country}, *{invoiceDetails.companyAdress}|"></span><br>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Shipping To:</h4>
+                        <b><span th:text="|Company: *{invoiceDetails.companyName}|"></span></b><br>
+                        <span th:text="|Country: *{shippingDetails.country}|"></span><br>
+                        <span th:text="|Name: *{shippingDetails.fullname}|"></span><br>
+                        <span th:text="|Delivery Address: *{shippingDetails.country}, *{shippingDetails.deliveryAddress}|"></span><br>
+                        <span th:text="|Phone: *{shippingDetails.phoneNumber}|"></span><br>
+                    </div>
+
+                    <div class="w-100"></div>
+                    <div class="col-12 table-responsive">
+                        <form th:action="@{/admin/users/manage-orders/invoice}" th:method="patch"
+                              th:object="${markedOrders}">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Colors</th>
+                                    <th>Unit Type</th>
+                                    <th>Price per piece</th>
+                                    <th>Currency</th>
+                                    <th>Message</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr class="active" th:each="order, item : *{orders}">
+
+                                    <!--Set up all parameters-->
+                                    <input type="hidden" th:field="*{orders[__${item.index}__].id}">
+                                    <input type="hidden" name="userId" th:value = "${userDetails.id}">
+                                    <input type="hidden" th:field="*{orders[__${item.index}__].orderDescription}">
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].fileUrl}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].publicId}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].created}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].confirmedOrder}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].deadline}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].discountPercentage}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].orderStatus}">-->
+<!--                                    <input type="hidden" th:field="*{orders[__${item.index}__].apparelColor}">-->
+                                    <td th:text="${item.count}">1</td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].orderCode}">
+                                    </td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].transferCategory}"></td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].orderName}"></td>
+                                    <td><input type="number" th:field="*{orders[__${item.index}__].quantity}"></td>
+                                    <td><input type="number" th:field="*{orders[__${item.index}__].numOfColors}"></td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].unitTypeEnum}" ></td>
+                                    <td><input type="number" step="any" th:field="*{orders[__${item.index}__].pricePerUnit}"></td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].currency}"></td>
+                                    <td><input type="text" th:field="*{orders[__${item.index}__].messageFromAdmin}">
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                            <button class="btn btn-success" type="submit">CREATE AN INVOICE</button>
+                        </form>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-6">
+                        <div class="card mx-auto rounded-0 border-0" style="max-width: 800px;">
+                            <div class="card-body" style="padding: 40px;">
+                                <h3>QUOTE</h3>
+                                <!--                                <form th:action="@{/admin/users/manage-orders/invoice}" th:method="post">-->
+
+                                <!--                                    <div class="form-row">-->
+                                <!--                                        <div class="form-group col-md-4">-->
+                                <!--                                            <label for="totalAmount">TOTAL AMOUNT: </label>-->
+                                <!--                                            <input type="number" step="any" th:name="totalAmount" id="totalAmount" min="0">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-row">-->
+                                <!--                                        <div class="form-group col-md-4">-->
+                                <!--                                            <label for="vatConfirmed">ADD VAT: </label>-->
+                                <!--                                            <input type="checkbox" th:name="vatConfirmed" id="vatConfirmed">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-row">-->
+                                <!--                                        <div class="form-group col-md-4">-->
+                                <!--                                            <label for="payed">PAYED: </label>-->
+                                <!--                                            <input type="checkbox" th:name="payed" id="payed">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-row">-->
+                                <!--                                        <div class="form-group col-md-4">-->
+                                <!--                                            <label for="shippingCost">SHIPPING COST: </label>-->
+                                <!--                                            <input type="number" step="any" min="0" th:name="shippingCost" id="shippingCost">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="form-row">-->
+                                <!--                                        <div class="form-group col-md-4">-->
+                                <!--                                            <label for="trackingNumber">TRACKING: </label>-->
+                                <!--                                            <input type="text" th:name="trackingNumber" id="trackingNumber">-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                    <input type="hidden" name="userId" th:value="${userDetails.getId()}">-->
+                                <!--                                    <input type="hidden" name="order[]" th:value="${markedOrders}">-->
+                                <!--                                    <button class="btn btn-success" type="submit">CREATE AN INVOICE</button>-->
+                                <!--                                </form>-->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+<!--<table class="table">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>#</th>-->
+<!--        <th>Code</th>-->
+<!--        <th>Type</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Quantity</th>-->
+<!--        <th>Unit Type</th>-->
+<!--        <th>Currency</th>-->
+<!--        <th>Message</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <form>-->
+<!--        <tbody>-->
+
+
+<!--        <tr class="active" th:each="order, item : ${markedOrders.orders}" th:object="${order}">-->
+<!--            <td th:text="${markedOrders.indexOf(order)+1}">1</td>-->
+<!--            <td th:text="*{orderCode}"></td>-->
+<!--            <td th:text="*{transferCategory}"></td>-->
+<!--            <td th:text="*{orderName}"></td>-->
+<!--            <td th:text="*{quantity}"></td>-->
+<!--            <td th:text="*{unitTypeEnum}" th:name="*{quantity}"></td>-->
+<!--            <td th:text="*{currency}"></td>-->
+<!--            <td th:text="*{orderDescription}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--        <button class="btn btn-success" type="submit">CREATE AN INVOICE</button>-->
+<!--    </form>-->
+<!--</table>-->
+
+</body>
+</html>
+

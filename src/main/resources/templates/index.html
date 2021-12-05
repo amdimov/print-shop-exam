@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+    <section th:replace="fragments/essential/slider :: slider">Slider</section>
+
+    <section th:replace="fragments/p_home_content :: p_home_content">Home Content</section>
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Transferhall",
+            "legalName": "Megaprint Transfers LTD",
+            "url": "https://transferhall.de/",
+            "logo": "https://transferhall.de/images/trans_logo.png",
+            "foundingDate": "2001",
+            "founders": [
+                {
+                    "@type": "Person",
+                    "name": "Mario Dimov"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Mira Dimova"
+                }
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Edisonstraße 63",
+                "addressLocality": "Berlin",
+                "addressRegion": "Berlin",
+                "postalCode": "12459",
+                "addressCountry": "DE"
+            },
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Support",
+                "telephone": "[08001808979]",
+                "email": "office1@transferhall.de"
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "960"
+            }
+        }
+    </script>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>
