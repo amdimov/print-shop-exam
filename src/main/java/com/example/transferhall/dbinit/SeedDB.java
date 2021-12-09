@@ -66,24 +66,7 @@ public class SeedDB implements CommandLineRunner {
         rolesRepository.saveAll(List.of(adminRole, userRole));
     }
 
-    private void initAdmin() {
-        if (userRepository.count() > 0) {
-            return;
-        }
-        this.user = new UsersEntity();
-        user.setFirstName("Alex").setLastName("Dimov")
-                .setEmail("amdimov@gmail.com").setCompanyName("Megaprint Transfer")
-                .setRoles(
-                        Set.of(
-                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.ADMIN),
-                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.USER)
-                        )
-                )
-                .setPassword(passwordEncoder.encode("bulgariavarna"));
-        user.setInvoiceDetails(new InvoiceDetailsEntity().setCompanyName(user.getCompanyName())
-                .setCountry("Deutschland"));
-        userRepository.save(user);
-    }
+   
 
     private void initOrders() {
         if (this.ordersRepository.count() > 0) {
