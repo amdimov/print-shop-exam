@@ -23,7 +23,7 @@ public class InvoiceDTO {
     private BigDecimal shippingCost;
     private String trackingNumber;
     private List<OrderDetailsDTO> orders;
-    private Long userId;
+    private UserDetailsDTO users;
 
     public String getInvoiceNumber() {
         return invoiceNumber;
@@ -124,12 +124,12 @@ public class InvoiceDTO {
         return this;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserDetailsDTO getUsers() {
+        return users;
     }
 
-    public InvoiceDTO setUserId(Long userId) {
-        this.userId = userId;
+    public InvoiceDTO setUsers(UserDetailsDTO users) {
+        this.users = users;
         return this;
     }
 }

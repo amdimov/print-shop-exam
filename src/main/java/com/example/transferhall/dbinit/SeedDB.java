@@ -44,7 +44,7 @@ public class SeedDB implements CommandLineRunner {
     public void run(String... args) throws Exception {
         initRoles();
         initAdmin();
-        initOrders();
+//        initOrders();
 
 
     }
@@ -72,14 +72,14 @@ public class SeedDB implements CommandLineRunner {
         }
         this.user = new UsersEntity();
         user.setFirstName("Alex").setLastName("Dimov")
-                .setEmail("admin@admin.com").setCompanyName("Megaprint Transfer")
+                .setEmail("amdimov@gmail.com").setCompanyName("Megaprint Transfer")
                 .setRoles(
                         Set.of(
                                 rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.ADMIN),
                                 rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.USER)
                         )
                 )
-                .setPassword(passwordEncoder.encode("admin"));
+                .setPassword(passwordEncoder.encode("bulgariavarna"));
         user.setInvoiceDetails(new InvoiceDetailsEntity().setCompanyName(user.getCompanyName())
                 .setCountry("Deutschland"));
         userRepository.save(user);
@@ -107,7 +107,7 @@ public class SeedDB implements CommandLineRunner {
                 .setQuantity(150).setUnitTypeEnum(UnitTypeEnum.PCS).setPricePerUnit(BigDecimal.valueOf(6.37))
                 .setCurrency(CurrencyEnum.EUR).setCreated(LocalDateTime.now());
 
-        UsersEntity usersEntity = userRepository.findUsersLazyEntityByEmail("admin@admin.com").get();
+        UsersEntity usersEntity = userRepository.findUsersLazyEntityByEmail("amdimov@gmail.com").get();
         orders.setUsers(usersEntity);
         ordersTwo.setUsers(usersEntity);
 

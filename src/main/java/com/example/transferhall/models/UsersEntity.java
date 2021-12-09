@@ -52,6 +52,9 @@ public class UsersEntity extends BaseEntity {
     @OneToOne(cascade = CascadeType.PERSIST)
     private ShippingDetailsEntity shippingDetails;
 
+    @OneToMany(mappedBy = "users")
+    private List<InvoicesEntity> invoices;
+
     public void setShippingDetails(ShippingDetailsEntity shippingDetails) {
         this.shippingDetails = shippingDetails;
     }
@@ -167,6 +170,15 @@ public class UsersEntity extends BaseEntity {
 
     public UsersEntity setOrders(List<OrdersEntity> orders) {
         this.orders = orders;
+        return this;
+    }
+
+    public List<InvoicesEntity> getInvoices() {
+        return invoices;
+    }
+
+    public UsersEntity setInvoices(List<InvoicesEntity> invoices) {
+        this.invoices = invoices;
         return this;
     }
 }

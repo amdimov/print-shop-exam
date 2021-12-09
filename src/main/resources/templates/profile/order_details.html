@@ -54,7 +54,8 @@
                     <a target="_blank" th:href="*{fileUrl}"><button class="btn btn-info">YOUR FILE</button></a><br>
                 </p>
                 <div class="divider divider-sm"></div>
-                <a href="#" class="button button-desc button-border button-rounded center"><div>Proforma Invoice</div><span>You can check your quote here</span></a><br>
+                <a th:if="*{orderStatus.name() != 'PENDING'}" th:href="@{/user/profile/invoice/{invoiceNumber}(invoiceNumber=${invoiceNumber})}"
+                   class="button button-desc button-border button-rounded center"><div>Proforma Invoice</div><span>You can check your quote here</span></a><br>
 <!--                <p>-->
 <!--                    <span>Price per unit: <span th:text="*{pricePerUnit} ? *{pricePerUnit} : 'Pending'"></span></span><br>-->
 <!--                    <span>Shipping cost: <span th:text="*{shippingCost} ? *{shippingCost} : 'Pending'"></span></span><br>-->

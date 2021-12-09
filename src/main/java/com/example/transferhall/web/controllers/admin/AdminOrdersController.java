@@ -1,22 +1,24 @@
 package com.example.transferhall.web.controllers.admin;
 
+import com.example.transferhall.events.ChangeOrderStatusEvent;
 import com.example.transferhall.models.bindingModels.admin.binding.OrderDetailsWrapper;
 import com.example.transferhall.models.dto.InvoiceDTO;
 import com.example.transferhall.models.dto.UserDetailsDTO;
 import com.example.transferhall.models.enums.OrderStatusEnum;
 import com.example.transferhall.models.dto.OrderDetailsDTO;
 import com.example.transferhall.models.views.PendingUsersView;
+import com.example.transferhall.service.InvoiceService;
 import com.example.transferhall.service.OrdersService;
 import com.example.transferhall.service.UsersService;
 import com.example.transferhall.util.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +27,16 @@ import java.util.Optional;
 public class AdminOrdersController {
     private final UsersService usersService;
     private final OrdersService ordersService;
+    private final InvoiceService invoiceService;
+    private final ApplicationEventPublisher applicationPublisher;
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminOrdersController.class);
 
-    public AdminOrdersController(UsersService usersService, OrdersService ordersService) {
+    public AdminOrdersController(UsersService usersService, OrdersService ordersService,
+                                 InvoiceService invoiceService, ApplicationEventPublisher applicationPublisher) {
         this.usersService = usersService;
         this.ordersService = ordersService;
+        this.invoiceService = invoiceService;
+        this.applicationPublisher = applicationPublisher;
     }
 
     @GetMapping("/manage-orders")
@@ -78,15 +85,19 @@ public class AdminOrdersController {
         System.out.println(markedOrders.getOrders());
         LOGGER.info(markedOrders.getOrders().get(0).getOrderName());
         Optional<InvoiceDTO> newInvoice = ordersService.createNewInvoice(markedOrders, userId);
-        redirectAttributes.addFlashAttribute("invoice", newInvoice);
-        return "redirect:/admin/users/manage-orders/invoice";
+        ChangeOrderStatusEvent statusEvent = new ChangeOrderStatusEvent(this,
+                newInvoice.get().getInvoiceNumber());
+        applicationPublisher.publishEvent(statusEvent);
+        return "redirect:/admin/users/manage-orders/invoice/"+newInvoice.get().getInvoiceNumber();
     }
 
-    @GetMapping("/manage-orders/invoice")
-    private String invoice(@ModelAttribute("invoice") InvoiceDTO invoiceDTO, Model model){
-        model.addAttribute("invoice", invoiceDTO);
+    @GetMapping("/manage-orders/invoice/{invoiceNumber}")
+    private String invoice(@PathVariable("invoiceNumber") String invoiceNumber, Model model){
+        InvoiceDTO invoice = invoiceService.findInvoiceByInvoiceNumber(invoiceNumber);
+        model.addAttribute("invoice", invoice);
         return "admin/invoice";
     }
+
 
 
 }

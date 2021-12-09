@@ -21,4 +21,5 @@ public interface OrdersService {
     List<OrderDetailsDTO> getSelectedInvoiceById(List<Long> ids);
     Optional<InvoiceDTO> createInvoice(InvoiceDTO invoiceDTO, Long userId, List<OrderDetailsDTO> markedOrders);
     Optional<InvoiceDTO> createNewInvoice(OrderDetailsWrapper selectedOrders, Long userId);
+
 }

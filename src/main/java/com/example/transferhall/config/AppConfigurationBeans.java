@@ -29,7 +29,10 @@ public class AppConfigurationBeans {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-      
+        mailSender.setHost("de16.fcomet.com");
+        mailSender.setPort(587);
+//        mailSender.setUsername();
+//        mailSender.setPassword();
 
 
         Properties props = mailSender.getJavaMailProperties();

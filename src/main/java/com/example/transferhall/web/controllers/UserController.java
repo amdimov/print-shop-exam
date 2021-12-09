@@ -1,13 +1,13 @@
 package com.example.transferhall.web.controllers;
 
 import com.example.transferhall.models.SecurityUser;
-import com.example.transferhall.models.dto.AddInquiryOrOrderDTO;
-import com.example.transferhall.models.dto.InvoiceDetailsDTO;
-import com.example.transferhall.models.dto.ShippingDetailsDTO;
-import com.example.transferhall.models.dto.OrderDetailsDTO;
+import com.example.transferhall.models.dto.*;
+import com.example.transferhall.models.enums.OrderStatusEnum;
 import com.example.transferhall.models.views.ProfileOrderView;
+import com.example.transferhall.service.InvoiceService;
 import com.example.transferhall.service.OrdersService;
 import com.example.transferhall.service.UsersService;
+import com.example.transferhall.util.exceptions.InvoiceNotFound;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,13 @@ import java.util.Optional;
 public class UserController {
     private final OrdersService ordersService;
     private final UsersService usersService;
-    public UserController(OrdersService ordersService, UsersService usersService) {
+    private final InvoiceService invoiceService;
+
+    public UserController(OrdersService ordersService, UsersService usersService,
+                          InvoiceService invoiceService) {
         this.ordersService = ordersService;
         this.usersService = usersService;
+        this.invoiceService = invoiceService;
     }
 
     @GetMapping("/profile")
@@ -66,8 +70,30 @@ public class UserController {
     public String orderDetails(@PathVariable Long id, Model model, Principal principal){
         OrderDetailsDTO order = ordersService.getOrderById(id);
         model.addAttribute("order", order);
+
+        if (!order.getOrderStatus().equals(OrderStatusEnum.PENDING)){
+            Optional<InvoiceDTO> invoice = invoiceService.findInvoiceByOrderId(id);
+            invoice.ifPresent(invoiceDTO -> model.addAttribute("invoiceNumber",
+                invoiceDTO.getInvoiceNumber()));
+        }
         return "profile/order_details";
     }
+
+    @GetMapping("/profile/invoice/{invoiceNumber}")
+    private String invoice(
+                           @PathVariable String invoiceNumber,
+                           Model model){
+        if (invoiceNumber.isBlank() || invoiceNumber.isEmpty()){
+            throw new InvoiceNotFound("Invoice for this order hasn't been created yet");
+        }
+
+//        OrderDetailsDTO order = ordersService.getOrderById(id);
+//        Optional<InvoiceDTO> invoice = invoiceService.findInvoiceByOrderId(order.getId());
+        InvoiceDTO invoice = invoiceService.findInvoiceByInvoiceNumber(invoiceNumber);
+        model.addAttribute("invoice", invoice);
+        return "profile/invoice";
+    }
+
 
     @GetMapping("/company-details")
     public String companyDetails(){

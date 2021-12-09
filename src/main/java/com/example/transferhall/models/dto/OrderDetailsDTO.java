@@ -231,4 +231,5 @@ public class OrderDetailsDTO {
         this.messageFromAdmin = messageFromAdmin;
         return this;
     }
+
 }

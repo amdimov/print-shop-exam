@@ -18,8 +18,8 @@ import javax.validation.Valid;
 @RequestMapping("/register")
 public class RegisterController {
 
-    private UsersService usersService;
-    private ModelMapper modelMapper;
+    private final UsersService usersService;
+    private final ModelMapper modelMapper;
 
     public RegisterController(UsersService usersService,
                                ModelMapper modelMapper) {

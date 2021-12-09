@@ -20,7 +20,6 @@ import com.example.transferhall.service.cloudinaryUpload.CloudinaryUploadIfc;
 import com.example.transferhall.util.exceptions.PageNotFoundException;
 import com.example.transferhall.util.exceptions.UserNotFoundException;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -177,24 +176,64 @@ public class OrdersServiceImpl implements OrdersService {
                 orElseThrow(() -> new UserNotFoundException("User with provided id not found"));
         List<OrdersEntity> orders = ordersRepository.findAllById(selectedOrders.getOrders().stream().map(OrderDetailsDTO::getId).
                 collect(Collectors.toList()));
-        for (OrdersEntity order : orders) {
-            for (OrderDetailsDTO orderDTO : selectedOrders.getOrders()) {
+        BigDecimal totalAmountOfInvoice = BigDecimal.valueOf(0);
+        totalAmountOfInvoice = mapOrdersAndGetTotalAmount(selectedOrders, orders, totalAmountOfInvoice);
+        ordersRepository.saveAll(orders);
+
+        if (userHasNoInvoiceOrNoOtherPayed(user)) {
+            InvoicesEntity invoice = makeNewInvoice(user, totalAmountOfInvoice, orders);
+            invoiceRepository.save(invoice);
+            return Optional.of(modelMapper.map(invoice, InvoiceDTO.class));
+        }else {
+            Optional<InvoicesEntity> editInvoice = invoiceRepository
+                    .findByPayedIsFalse();
+            if (editInvoice.isPresent()){
+                editInvoice(user, totalAmountOfInvoice, editInvoice);
+                orders.forEach(order -> order.setInvoices(editInvoice.get()));
+                invoiceRepository.save(editInvoice.get());
+                return Optional.of(modelMapper.map(editInvoice.get(), InvoiceDTO.class));
+            }
+            return Optional.empty();
+        }
+    }
+
+    private void editInvoice(UsersEntity user, BigDecimal totalAmountOfInvoice, Optional<InvoicesEntity> editInvoice) {
+        editInvoice.get().setUsers(user)
+                .setPayed(false).setIssuedDate(LocalDate.now())
+                .setTotalAmount(totalAmountOfInvoice);
+    }
+
+    private BigDecimal mapOrdersAndGetTotalAmount(OrderDetailsWrapper selectedOrders, List<OrdersEntity> orders, BigDecimal totalAmountOfInvoice) {
+        for (OrdersEntity order : orders)
+            for (OrderDetailsDTO orderDTO : selectedOrders.getOrders())
                 if (Objects.equals(order.getId(), orderDTO.getId())) {
+                    BigDecimal currentOrderValue = orderDTO.getPricePerUnit()
+                            .multiply(BigDecimal.valueOf(orderDTO.getQuantity()));
+                    totalAmountOfInvoice = totalAmountOfInvoice.add(currentOrderValue);
                     order.setOrderName(orderDTO.getOrderName())
+                            .setQuantity(orderDTO.getQuantity())
                             .setNumOfColors(orderDTO.getNumOfColors())
                             .setPricePerUnit(orderDTO.getPricePerUnit())
+                            .setTotalPrice(currentOrderValue)
                             .setMessageFromAdmin(orderDTO.getMessageFromAdmin());
                 }
-            }
-        }
+        return totalAmountOfInvoice;
+    }
+
+    private InvoicesEntity makeNewInvoice(UsersEntity user, BigDecimal totalAmountOfInvoice,
+                                          List<OrdersEntity> orders) {
         InvoicesEntity invoice = new InvoicesEntity()
                 .setUsers(user)
                 .setInvoiceNumber(RandomStringUtils.random(11, false, true))
-                .setPayed(false).setIssuedDate(LocalDate.now());
+                .setPayed(false).setIssuedDate(LocalDate.now())
+                .setTotalAmount(totalAmountOfInvoice);
         orders.forEach(order -> order.setInvoices(invoice));
         invoice.setOrders(orders);
-        invoiceRepository.save(invoice);
-        return Optional.of(modelMapper.map(invoice, InvoiceDTO.class));
+        return invoice;
+    }
+
+    private boolean userHasNoInvoiceOrNoOtherPayed(UsersEntity user){
+        return user.getInvoices().stream().allMatch(InvoicesEntity::getPayed);
     }
 
     private boolean isAdmin(UsersEntity usersEntity) {
