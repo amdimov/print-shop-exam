@@ -52,6 +52,29 @@ public class SeedDB implements CommandLineRunner {
     private void initSellerDetails(){
 
     }
+    
+    private void initAdmin() {
+        if (userRepository.count() > 0) {
+            return;
+        }
+        this.user = new UsersEntity();
+        user.setFirstName("Admin").setLastName("Adminov")
+<<<<<<< HEAD
+                .setEmail("admin@admin.com").setCompanyName("Megaprint Transfers")
+=======
+                .setEmail("admin@admin.com").setCompanyName("Megaprint Transfer")
+>>>>>>> 7764c4d8c23392c06c026d74fd31db6f5f2265e7
+                .setRoles(
+                        Set.of(
+                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.ADMIN),
+                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.USER)
+                        )
+                )
+                .setPassword(passwordEncoder.encode("admin"));
+        user.setInvoiceDetails(new InvoiceDetailsEntity().setCompanyName(user.getCompanyName())
+                .setCountry("Deutschland"));
+        userRepository.save(user);
+    }
 
     private void initRoles() {
         if (rolesRepository.count() > 0) {
@@ -66,24 +89,7 @@ public class SeedDB implements CommandLineRunner {
         rolesRepository.saveAll(List.of(adminRole, userRole));
     }
 
-    private void initAdmin() {
-        if (userRepository.count() > 0) {
-            return;
-        }
-        this.user = new UsersEntity();
-        user.setFirstName("Admin").setLastName("Adminov")
-                .setEmail("admin@admin.com").setCompanyName("Megaprint Transfers")
-                .setRoles(
-                        Set.of(
-                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.ADMIN),
-                                rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.USER)
-                        )
-                )
-                .setPassword(passwordEncoder.encode("admin"));
-        user.setInvoiceDetails(new InvoiceDetailsEntity().setCompanyName(user.getCompanyName())
-                .setCountry("Deutschland"));
-        userRepository.save(user);
-    }
+   
 
     private void initOrders() {
         if (this.ordersRepository.count() > 0) {
