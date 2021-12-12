@@ -105,7 +105,7 @@ class GalleryServiceImplTest {
 
         Mockito.when(cloudinaryUploadTest.addFileToCloudinary(this.multipartFile))
                 .thenReturn(this.cloudinaryFileTest);
-        Mockito.when(mockModelMapper.map(galleryEntity, ImageViewModel.class))
+        Mockito.when(mockModelMapper.map(any(), any()))
                 .thenReturn(this.imageViewModelTest);
 
 
