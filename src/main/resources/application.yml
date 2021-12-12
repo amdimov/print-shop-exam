@@ -32,14 +32,6 @@ spring:
         web:
             pageable:
                 one-indexed-parameters: on
-#    mail:
-#        host: smtp.gmail.com
-#        port: 587
-#        username: amdimov@gmail.com
-#        password: l1e2n3n4y5
-#        properties.mail.smtp:
-#              auth: true
-#              starttls.enable: true
 
 logging:
     level:
