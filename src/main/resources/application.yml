@@ -47,7 +47,7 @@ logging:
         org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #Cloudinary Properties
 cloudinary:
-    api-key: 964649677497653
+    api-key: ${CLOURINARY_API}
     api-secret: ${CLOUDINARY_API_SECRET}
     cloud-name: dronasqsi
 
@@ -55,7 +55,7 @@ cloudinary:
 #    delay:
 spring.mail.host: de16.fcomet.com
 spring.mail.port: 587
-spring.mail.username: office1@transferhall.de
+spring.mail.username: ${EMAIL}
 spring.mail.password: ${EMAIL_PSW}
   # Other smtp properties
 spring.mail.properties.mail.smtp.auth: true

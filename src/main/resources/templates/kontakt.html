@@ -39,21 +39,21 @@
 
                                 <div class="row">
                                     <div class="col-md-4 form-group">
-                                        <label for="template-contactform-name">Name <small style="color: red">*</small></label>
-                                        <input type="text" id="name" name="name" required="required" value="" class="sm-form-control required" onchange="checkFill()" />
+                                        <label for="senderName">Name <small style="color: red">*</small></label>
+                                        <input type="text" id="senderName" name="senderName" required="required" value="" class="sm-form-control required" onchange="checkFill()" />
                                         <small id="writeName" style="color:red;">Please write your name</small>
                                         <i class="icon-checkmark" style="color: #2dc26b" id="iconName"></i>
                                     </div>
 
                                     <div class="col-md-4 form-group">
-                                        <label for="template-contactform-email">E-Mail <small style="color: red">*</small></label>
+                                        <label for="email1">E-Mail <small style="color: red">*</small></label>
                                         <input type="email" id = "email1" name="email1" required="required" value="" class="required email sm-form-control" onchange="checkFill()" />
                                         <small id="writeEmail1" style="color:red;">Please write your email</small>
                                         <i class="icon-checkmark" style="color: #2dc26b" id="iconEmail1"></i>
                                     </div>
 
                                     <div class="col-md-4 form-group">
-                                        <label for="template-contactform-phone">E-Mail bestätigen<small style="color: red">*</small></label>
+                                        <label for="email2">E-Mail bestätigen<small style="color: red">*</small></label>
                                         <input type="email" id="email2" name="email2" required="required" value="" class="sm-form-control" onchange="checkFill()" />
                                         <small id="writeEmail2" style="color:red;">Please rewrite your email again</small>
                                         <i class="icon-checkmark" style="color: #2dc26b" id="iconEmail2"></i>
@@ -62,13 +62,13 @@
                                     <div class="w-100"></div>
 
                                     <div class="col-md-8 form-group">
-                                        <label for="template-contactform-subject">Subject</label>
+                                        <label for="subject">Subject</label>
                                         <input type="text" id="subject" name="subject" value="" class="required sm-form-control" />
                                     </div>
 
                                     <div class="col-md-4 form-group">
-                                        <label for="template-contactform-service">Wie haben Sie von uns erfahren</label>
-                                        <select name="reference" class="sm-form-control">
+                                        <label for="reference">Wie haben Sie von uns erfahren</label>
+                                        <select id="reference" name="reference" class="sm-form-control">
                                             <option value="">-- Select One --</option>
                                             <option value="Google">Google</option>
                                             <option value="Recommendation">Empfehlung</option>
@@ -80,14 +80,12 @@
                                     <div class="w-100"></div>
 
                                     <div class="col-12 form-group">
-                                        <label for="template-contactform-message">Message</label>
+                                        <label for="message">Message</label>
                                         <textarea class="required sm-form-control" id="message" name="message" rows="6" cols="30" onchange="checkFill()" onkeyup="checkFill()"></textarea>
                                         <div id="charNum"></div>
                                         <small id="writeMessage" style="color:red;" value="Empty message">Please write you message</small>
                                         <i class="icon-checkmark" style="color: #2dc26b" id="iconMessage"></i>
                                     </div>
-
-
 
                                     <div class="col-12 form-group">
                                         <button name="submit" id="submit" type="submit" tabindex="5" value="Submit" class="button button-3d m-0" onchange="checkFill()">SEND</button>
@@ -177,7 +175,6 @@ MwSt.-Nr.: BG148051297
 ============================================= -->
 <script src="/js/jquery.js"></script>
 <script src="/js/plugins.min.js"></script>
-<script src="/js/functions.js"></script>
 
 <!-- Validation -->
 <script>

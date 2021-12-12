@@ -17,7 +17,7 @@ th:fragment="footer">
                         <img src="/images/transferhall_white.png" alt="Transferhall Weiß Logo" class="alignleft"
                              style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
 
-                        <p><i>transferhall.</i> ist eine Online-Lösung von
+                        <p th:text="#{footer_presentation}"><i>transferhall.</i> ist eine Online-Lösung von
                             <stron>Megaprint Transfers</stron>
                             .
                             Wenn Sie eine langfristige Partnerschaft anstreben oder Empfehlungen haben, kontaktieren
@@ -67,14 +67,14 @@ th:fragment="footer">
                             <div class="col-6">
                                 <address class="mb-0">
                                     <abbr title="Deutsche Repräsentanz"
-                                          style="display: inline-block;margin-bottom: 7px;"><strong>Geschäftsstelle
+                                          style="display: inline-block;margin-bottom: 7px;"><strong th:text="#{footer_office}">Geschäftsstelle
                                         Deutschland:</strong></abbr><br>
                                     House A, 1st floor, Edisonstraße 63<br>
                                     Berlin, Berlin, 12459, Deutschland<br>
                                 </address>
                             </div>
                             <div class="col-6">
-                                <abbr title="Telefon Deutschland"><strong>Telefonnummer Deutschland:</strong></abbr>
+                                <abbr title="Telefon Deutschland"><strong th:text="#{footer_phone}">Telefonnummer Deutschland:</strong></abbr>
                                 08001808979<br>
                                 <abbr title="Email"><strong>Email:</strong></abbr> office1@transferhall.de<br>
                             </div>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <section id="page-title" style="background-image: url('/images/single_spot_page_main.png');">
+        <div class="col-4 center">
+            <div class="rounded" >
+                <h1 class="rounded animated fadeIn fast" style="color: #e35f5f; background-color: black">Single Spot <i class="icon-copyright" style="font-size: small"></i></h1>
+            </div>
+        </div>
+    </section><!-- #page-title end -->
+    <!--i-circled icon-ok-->
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container-fluid px-5 clearfix">
+                <div class="row col-mb-50">
+                    <div class="w-100"></div>
+                    <div class="col-md-8">
+                        <h4>Einfarbiger Siebdrucktransfer mit hoher Deckkraft und Beständigkeit</h4>
+                        <p>Beim Siebdruck wird eine Technik verwendet, mit der die Farbe und die Klebeschicht 1:1 gedruckt werden kann.
+                            Dies vermeidet den für die meisten Siebdrucke typischen Lichtschein.
+                            Falls es aber notwendig ist, dass dieser Siebdruck auf dunkleren Textilien gedruckt werden muss, empfiehlt es sich, eine zusätzliche weiße Schicht zu verwenden, um die Abdeckung zu erhöhen.
+                            Mehr erfahren Sie hier - <a href="/multi-spot">Multi Spot</a></p>
+
+                        <p><h5>Über die Farben</h5>
+                        Dank der Siebdrucktechnologie können wir eine Farbe erstellen, die Ihren Vorlieben und Anforderungen entspricht.
+                        Wenn Ihr Logo eine Schutzmarke ist und Sie keine Farbabweichungen zulassen, ist der Siebdruck die beste Wahl für Sie
+                        </p>
+                        <p>
+                        <h5>Wie können Sie eine Bestellung aufgeben?</h5>
+                        Um Ihr Transferprojekt zu starten, müssen Sie uns lediglich eine Vektordatei mit Informationen zu Pantone-Nummer,
+                        Menge und den genauen Abmessungen senden. Wir können das am besten geeignete Format für den Druck Ihres Logos auswählen.
+                        Natürlich ist auch die Kombination mehrerer Logos pro Format akzeptabel.
+                        Wenn Sie möchten, können Sie <a href="/preisrechner">hier</a> unsere Preise pro Format berechnen oder uns direkt per E-Mail kontaktieren.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>SingleSpot Bilder</h3>
+
+                        <div class="masonry-thumbs grid-container grid-3 clearfix">
+                            <a class="grid-item" href="/images/portfolio/4/2.jpg" data-lightbox="image">
+                                <div class="grid-inner">
+                                    <img src="/images/portfolio/4/2.jpg" alt="SingleSpot Einfarbig Logo">
+                                    <div class="bg-overlay">
+                                        <div class="bg-overlay-content dark">
+                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                        </div>
+                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="grid-item" href="/images/portfolio/4/17.jpg" data-lightbox="image">
+                                <div class="grid-inner">
+                                    <img src="/images/portfolio/4/17.jpg" alt="SingleSpot Siebdruck Label">
+                                    <div class="bg-overlay">
+                                        <div class="bg-overlay-content dark">
+                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                        </div>
+                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="grid-item" href="/images/portfolio/4/16.jpg" data-lightbox="image">
+                                <div class="grid-inner">
+                                    <img src="/images/portfolio/4/16.jpg" alt="Siebdruck mit MetallEffekt">
+                                    <div class="bg-overlay">
+                                        <div class="bg-overlay-content dark">
+                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                        </div>
+                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider p-0 m-0"></div>
+    </section>
+
+    <section id="content">
+        <div class="container-fluid px-5 clearfix">
+            <div class="row col-mb-50">
+                <div class="col-md-8 pt-0">
+                    <div class="tabs side-tabs mb-0 clearfix" id="tab-6">
+
+                        <ul class="tab-nav tab-nav2 clearfix">
+                            <li><a href="#tabs-21">Vorteile</a></li>
+                            <li><a href="#tabs-22">Geeignete Materialien</a></li>
+                            <li><a href="#tabs-23">Eigenschaften</a></li>
+                            <li class="hidden-phone"><a href="#tabs-24">Extras</a></li>
+                        </ul>
+
+                        <div class="tab-container ml-4">
+                            <div class="tab-content clearfix" id="tabs-21">
+                                <ul class="clearfix">
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Deckkraft bei helleren Stoffen</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Zusätzliches Pulver, das das Waschen bei 60°C ermöglicht</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Kein Lichtschein vom Klebstoff</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Elastizität</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Weiche Oberfläche</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Es besteht die Möglichkeit, dünne Elemente mit einer Größr von 0,4 mm zu drucken</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content clearfix" id="tabs-22">
+                                <ul>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Baumwolle, Polyester, Spandex, und andere</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> T-Shirts, Kappen, Rucksäcke, Sportbekleidung</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Es besteht die Möglichkeit, Arbeitskleidung zu bedrucken – Siebdruckfarben auf Wasserbasis und Silikon</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content clearfix" id="tabs-23">
+                                <ul>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Übertragung des Siebdrucks auf die Textilien bei 150°C-160°C</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Hohe Waschbeständigkeit – bei 60°C</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Das Transferpapier wird nach Ihrer Wahl kalt (empfohlen) oder heiß abgezogen</li>
+                                </ul>
+                            </div>
+                            <div class="tab-content clearfix" id="tabs-24">
+                                <ul>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Unterstützung bei der Fertigstellung des Entwurfs</li>
+                                    <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Vektorisierung von Bitmap-Projekten</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid" src="/SingleSpot.png" style="height: 70%" alt="SingleSpot">
+                </div>
+            </div>
+        </div>
+        <div class=" p-4 m-0"></div>
+    </section>
+
+    <section id="content">
+        <div class="container-fluid px-5 clearfix">
+            <div class="row col-mb-50">
+                <div class="col-md-12 pt-0">
+
+                    <div class="promo mb-5">
+                        <div class="row align-items-center m-4">
+                            <div class="col-12 col-lg">
+                                <h3>Berechnen Sie hier <span>einen Preis</span></h3>
+                                <span>Mindestmenge - 25 gedruckte Bögen. Maximale Farben - unbegrenzt.</span>
+                            </div>
+                            <div class="col-12 col-lg-auto mt-4 mt-lg-0">
+                                <a href="/preisrechner" class="button button-large button-circle m-0">Plastisoltransfer Preis</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.example.transferhall.web.controllers;
+package com.example.transferhall.tests;
 
 import com.example.transferhall.models.views.ImageViewModel;
 import com.example.transferhall.service.GalleryService;
@@ -21,10 +21,10 @@ public class TestController {
         return "test";
     }
 
-    @GetMapping("/test-cache-gallery")
-    public String testCachable(Model model){
-        List<ImageViewModel> images = galleryService.fetchAllImages();
-        model.addAttribute("image", images);
-        return "gallery";
-    }
+//    @GetMapping("/test-cache-gallery")
+//    public String testCachable(Model model){
+//        List<ImageViewModel> images = galleryService.fetchAllImages();
+//        model.addAttribute("image", images);
+//        return "gallery";
+//    }
 }

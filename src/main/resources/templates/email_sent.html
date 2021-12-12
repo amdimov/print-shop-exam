@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <section id="content">
+        <div class="postcontent col-lg-6 align-content-md-center">
+            <h3>Danke</h3>
+
+            <div class="alert alert-success">
+                <i class="icon-check-circle"></i><strong>Ihre Nachricht wurde gesendet.</strong> Wir werden sehr bald auf <u><b th:text="${email}"></b></u> antworten.
+            </div>
+            <div class="style-msg2 successmsg">
+                <div class="msgtitle">Ihr Nachrichteninhalt:</div>
+                <div class="sb-msg">
+                    <p th:text="${message}">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

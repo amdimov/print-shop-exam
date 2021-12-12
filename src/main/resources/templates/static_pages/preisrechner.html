@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+    <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+    <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="row">
+
+                    <div class="col-lg-8">
+                        <div class="form-widget">
+                            <!--                        <div class="form-result"></div>-->
+
+                            <form class="row mb-0" id="calculator"  action="" method="post" enctype="multipart/form-data">
+                                <div class="col-12 form-group mb-4 m-2 p-3">
+                                    <h2>Preise für Plastisoltransfer</h2>
+                                    <div class="col-8 spotLB" id="singleSpotLB">
+                                        <label>SINGLE SPOT</label>
+                                        <!-- SingleSpot LIGHTBOX-->
+
+                                        <div class="masonry-thumbs grid-container grid-3 clearfix">
+                                            <a class="grid-item" href="/images/portfolio/4/17.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/17.jpg" alt="Einfarbig-Transfer">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/2.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/2.jpg" alt="Einfarbig Ettiket-Transfer">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/16.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/16.jpg" alt="Siebdruck-Transfer mit einen Farbe">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-8 spotLB-none" id="multiSpotLB">
+                                        <label>MultiSpot</label>
+                                        <div class="masonry-thumbs grid-container grid-3 clearfix">
+                                            <a class="grid-item" href="/images/portfolio/4/5.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/5.jpg" alt="Siebdrucken Bild 2">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/14-1.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/14-1.jpg" alt="Mehrfarbig Transfer">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/10.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/10.jpg" alt="Mehrfarbig Heat Transfer Printing">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- MultiSpot LIGHTBOX-->
+
+
+                                        <!-- LIGHTBOX END-->
+                                    </div>
+                                    <div class="col-8 spotLB-none" id="photoSilkLB">
+                                        <label>PhotoSilk</label>
+                                        <!-- PhotoSilk LIGHTBOX-->
+
+                                        <div class="masonry-thumbs grid-container grid-3 clearfix">
+                                            <a class="grid-item" href="/images/portfolio/4/4.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/4.jpg" alt="CMYK-Transfer">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/7.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/7.jpg" alt="Vollfarbig-Siebdrucktransfer">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="grid-item" href="/images/portfolio/4/18.jpg" data-lightbox="image">
+                                                <div class="grid-inner">
+                                                    <img src="/images/portfolio/4/18.jpg" alt="Siebdruck Transfer - CMYK">
+                                                    <div class="bg-overlay">
+                                                        <div class="bg-overlay-content dark">
+                                                            <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                                                        </div>
+                                                        <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- LIGHTBOX END-->
+                                    </div>
+                                    <label for="type" class="mb-3">Wählen Sie einen Plastisoltransfer</label><br>
+                                    <div class="btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                                        <label for="sSpot" class="btn btn-outline-secondary px-5 font-weight-semibold ls0 nott active">
+                                            <input type="radio" name="type" id="sSpot" autocomplete="off" value="1" checked onclick="invisibleColors();getType()" onchange="getType()"> SingleSpot
+                                        </label>
+                                        <label for="mSpot" class="btn btn-outline-secondary px-5 font-weight-semibold ls0 nott">
+                                            <input type="radio" name="type" value="2"  autocomplete="off" id="mSpot"   onclick="invisibleColors()" onchange="getType()"> MultiSpot
+                                        </label>
+                                        <label for="pSilk" class="btn btn-outline-secondary px-5 font-weight-semibold ls0 nott">
+                                            <input type="radio" name="type" value="3"  autocomplete="off" id="pSilk"  onclick="invisibleColors()" onchange="getType()"> PhotoSilk
+                                        </label>
+                                    </div>
+                                    <!--                                <span class="small spotLB" id="singleSpotLB"><br>Single.Spot - one color. <a-->
+                                    <!--                                            href="http://ttransferhall.de/" target="_blank">Learn MoreTODO</a></span>-->
+                                    <!--                                <span class="small spotLB-none" id="multiSpotLB"><br>Multi.Spot - multi color transfer. <a-->
+                                    <!--                                            href="http://ttransferhall.de/" target="_blank">Learn MoreTODO</a> </span>-->
+                                    <!--                                <span class="small spotLB-none" id="photoSilkLB"><br>PhotoSilk - CMYK/Full Color. <a-->
+                                    <!--                                            href="http://ttransferhall.de/" target="_blank">Learn MoreTODO</a></span>-->
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                            <label>Druckbogengröße</label>
+                                            <select class="form-control" name="sheetSize" id="sheetSize" onchange="getType()">
+                                                <!--                                            <option value="">-- Select One --</option>-->
+                                                <option selected value="50x35" autocomplete="off" onclick="getType()">47x32cm</option>
+                                                <option value="40x30" onclick="getType()">38x28cm</option>
+                                                <option value="33x35" onclick="getType()">31x33cm</option>
+                                                <option value="25x35" onclick="getType()">23x33cm</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6 form-group" id="darkDiv" onchange="getType()">
+                                            <label>Ist es für dunkle Kleidung?</label>
+                                            <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                                                <label class="btn btn-outline-success ls0 nott">
+                                                    <input autocomplete="off" type="radio" name="darkGarment" id="darkYes" value="Yes" onchange="getType()"> Ja
+                                                </label>
+                                                <label class="btn btn-outline-danger ls0 nott">
+                                                    <input autocomplete="off" type="radio" name="darkGarment" checked="checked" id="darkNo" value="No" onchange="getType()"> Nein
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 form-group mb-4" id="sheetDiv">
+                                    <label for="numSheets" class="mb-3">Anzahl der Bögen: (min.25):</label><br>
+                                    <input type="number" id="numSheets" name="numSheets" class="website-pages input-range-slider" min="25" value="25" onchange="getType()"/>
+                                </div>
+                                <div class="col-6 form-group mb-4" id="colorDiv" style="display: none">
+                                    <label for="numColors" class="mb-3">Anzahl der Farben:</label><br>
+                                    <input type="number" id="numColors" name="numColors" autocomplete="off" class="website-pages input-range-slider" min="2" value="2" onchange="getType()"/>
+                                </div>
+
+                                <div class="divider"></div>
+                                <div class="col-12"><h2>Zusätzliche Extras</h2></div>
+                                <div class="col-6 form-group mb-4">
+                                    <label for="transFilm" class="mb-3"><abbr title="Printing on transparent PVC film with higher color opacity and easier to apply on cloth."><strong><i class="icon-question-sign" style="color: grey"></i></strong></abbr> Transferträger (+20%):</label><br>
+                                    <div class="btn-group btn-group-toggle flex-wrap"  data-toggle="buttons">
+                                        <label for="transFilm"
+                                               class="btn btn-outline-secondary px-3 font-weight-semibold ls0 nott">
+                                            <input type="checkbox" name="transFilm"
+                                                   id="transFilm" value="0" onchange="getType()"> Transparente Transferfolie
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6 form-group mb-4" >
+                                    <label for="website-cost-type" class="mb-3"><abbr title="Great solution for avoiding the color distraction in synthetic colorized materials. Mostly for sport clothes."><strong><i class="icon-question-sign" style="color: grey"></i></strong></abbr>Verhindern Sublimation von Polyesterstoffen (+15%):</label><br>
+                                    <div class="btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                                        <label for="blocker"
+                                               class="btn btn-outline-secondary px-3 font-weight-semibold ls0 nott">
+                                            <input type="checkbox" name="blocker"
+                                                   id="blocker"
+                                                   value="0" onchange="getType()"> SubliStop
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6 form-group mb-4">
+                                    <label for="website-cost-type" class="mb-3"><abbr title="Glossy metallic effect. Waterbased inks are used."><strong><i class="icon-question-sign" style="color: grey"></i></strong></abbr> Farben mit Metalleffekt (+15%):</label><br>
+                                    <div class="btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                                        <label for="metallic"
+                                               class="btn btn-outline-secondary px-3 font-weight-semibold ls0 nott">
+                                            <input type="checkbox" name="metallic"
+                                                   id="metallic"
+                                                   value="0" onchange="getType()"> Gold/Silber
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6 form-group mb-4" id="powderDiv" onchange="getType()">
+                                    <label for="website-cost-type" class="mb-3"><abbr title="Great for heat sensitive materials and increasing the durability of washing temperature."><strong><i class="icon-question-sign" style="color: grey"></i></strong></abbr> Heat Sensitive Fabrics (+15%):</label><br>
+                                    <div class="btn-group btn-group-toggle flex-wrap" data-toggle="buttons">
+                                        <label for="powder"
+                                               class="btn btn-outline-secondary px-3 font-weight-semibold ls0 nott">
+                                            <input type="checkbox" name="powder"
+                                                   id="powder"
+                                                   value="0" onchange="getType()"> Applying on 150C + Washing on 60C
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--                                Transfer Instructions-->
+
+                                <div class="col-12 form-group mb-4 pt-2">
+                                    <div class="fancy-title title-border title-center">
+                                        <h3 id="coldpeel">Cold Peel Transfer</h3>
+                                        <h3 id="hotpeel" style="display: none">Hot Peel Transfer</h3>
+                                    </div>
+                                    <div class="row pricing col-mb-30 mb-4">
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="pricing-box pricing-simple p-5 bg-light border-top border-primary text-center">
+                                                <div class="pricing-title">
+                                                    <span>Transferpresse</span>
+                                                    <h3>Temperatur</h3>
+                                                </div>
+                                                <div class="h2" id="degree180">
+                                                    180C&deg;
+                                                </div>
+                                                <div class="h2" id="degree150" style="display: none">
+                                                    150C&deg;
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="pricing-box pricing-simple p-5 bg-light border-top border-danger text-center">
+                                                <div class="pricing-title">
+                                                    <span>Transferpresse</span>
+                                                    <h3>Zeit</h3>
+                                                </div>
+                                                <div class="h2" id="sec8">
+                                                    8 sek
+                                                </div>
+                                                <div class="h2" id="sec10" style="display: none">
+                                                    10 sek
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="pricing-box pricing-simple p-5 bg-light border-top border-success text-center">
+                                                <div class="pricing-title">
+                                                    <span>Transferpress</span>
+                                                    <h3>Druck</h3>
+                                                </div>
+                                                <div class="h2">
+                                                    4 atm
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>*Cold Peel - Papier kalt abziehen<br></h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>*Hot Peel - Papier warm abziehen<br></h6>
+                                    </div>
+                                </div>
+                                <!--                            TranferInstruction END-->
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                    <!--TABLE CONTENT-->
+                    <div class="col-lg-4 order-lg-1 mb-4" id="printableTable">
+                        <div style="display: none" id="printableTitle" class="imagescale">
+                            <img src="/images/trans_logo.png" >
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="w-50">Artikel:</th>
+                                    <th class="w-50">Preis:</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Bogen Preis:</td>
+                                    <td class="responsive-value font-weight-semibold" id="sheetPriceColumn">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Anzahl der Bögen</td>
+                                    <td class="retina-value font-weight-semibold" id="addOptPrice">0</td>
+                                </tr>
+
+
+                                <th class="font-weight-semibold h5 mb-0">Gesamtkosten</th>
+                                <th class="total-price h5 font-weight-semibold mb-0" id="total">0</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!--                        <i class="center" style="color: gray">**20% VAT tax excluded. Providing us with a valid company EU VAT number will avoid all additional taxes.</i>-->
+                            <div class="center pt-3">
+                                <a href="#" class="button button-3d button-rounded button-white button-light" onclick="printPage('printableTable')"><i class="icon-line-printer"></i>Print</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+
+    <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+<script src="/js/calculator.js"></script>
+<script src="/js/calculator_lightbox.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

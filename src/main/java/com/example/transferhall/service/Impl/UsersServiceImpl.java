@@ -1,5 +1,6 @@
 package com.example.transferhall.service.Impl;
 
+import com.example.transferhall.models.BaseEntity;
 import com.example.transferhall.models.InvoiceDetailsEntity;
 import com.example.transferhall.models.ShippingDetailsEntity;
 import com.example.transferhall.models.UsersEntity;
@@ -14,6 +15,7 @@ import com.example.transferhall.models.views.PendingUsersView;
 import com.example.transferhall.repository.RolesRepository;
 import com.example.transferhall.repository.UserRepository;
 import com.example.transferhall.service.UsersService;
+import com.example.transferhall.util.exceptions.UserNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -52,9 +54,19 @@ public class UsersServiceImpl implements UsersService {
                 ))
                 .setPassword(passwordEncoder.encode(userRegisterServiceModel.getPassword()));
         user.setInvoiceDetails(new InvoiceDetailsEntity()
+                .setCountry("Not set")
+                .setCompanyAdress("Not set")
                 .setCompanyName(user.getCompanyName())
                 .setNameIssuedTo(user.getFirstName() + " " + user.getLastName())
-                .setCountry("Deutschland"));
+                );
+        user.setShippingDetails(new ShippingDetailsEntity()
+                .setCountry("Not set")
+                .setCity("Not set")
+                .setPostCode("Not set")
+                .setDeliveryAddress("Not set")
+                .setPhoneNumber("Not set")
+                .setFullname(user.getFirstName() + " " + user.getLastName())
+        );
         this.userRepository.save(user);
     }
 
@@ -147,6 +159,12 @@ public class UsersServiceImpl implements UsersService {
     public Optional<UserDetailsDTO> getDetailedUserById(Long id) {
         Optional<UsersEntity> user = userRepository.findById(id);
         return user.map(usersEntity -> modelMapper.map(usersEntity, UserDetailsDTO.class));
+    }
+
+    @Override
+    public Optional<Long> getUsersIdByEmail(String email) {
+        Optional<UsersEntity> usersEntity = userRepository.findUsersEntityByEmail(email);
+        return usersEntity.map(BaseEntity::getId);
     }
 
 

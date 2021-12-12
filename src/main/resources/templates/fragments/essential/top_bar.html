@@ -18,7 +18,18 @@
 <!--                        <li class="top-links-item"><a href="/">Home</a></li>-->
                         <li class="pl-3"><img src="/images/ph.png" alt="Phthalate Frei" style="height: 2.5em;"></li>
                         <li class="pl-4"><img src="/images/druck_check.png" alt="Frei, Pantone Farbe zu wahlen" style="height: 2em;"></li>
-                        <li class="pl-5" style="color: #666666"><b><i class="icon-note"></i><u>  Mitteilung: Frohes neues Jahr! Wir sind zurück. Lieferzeit 2-5 Tage</u></b></li>
+                        <li class="pl-5" style="color: #666666"><b><i class="icon-note"></i><u th:text="#{greeting}">  Mitteilung: Frohes neues Jahr! Wir sind zurück. Lieferzeit 2-5 Tage</u></b></li>
+                        <li class="pl-6 pt-2 text-center">
+                            <form th:method="get">
+                                <select
+                                        onchange="this.form.submit()"
+                                        id="lang"
+                                        name="lang">
+                                    <option value="de_DE" th:selected="${#locale.toString()} == 'de_DE'">Deutsch</option>
+                                    <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                                </select>
+                            </form>
+                        </li>
                     </ul>
                 </div><!-- .top-links end -->
             </div>

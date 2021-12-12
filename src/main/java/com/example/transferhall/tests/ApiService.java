@@ -1,4 +1,4 @@
-package com.example.transferhall.service.Impl;
+package com.example.transferhall.tests;
 
 import com.example.transferhall.models.serviceModels.OrdersApiDTO;
 import com.example.transferhall.repository.OrdersRepository;

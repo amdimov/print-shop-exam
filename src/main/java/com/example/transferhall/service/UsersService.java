@@ -20,4 +20,5 @@ public interface UsersService {
     List<PendingUsersView> getAllPendingUsers();
     Optional<PendingUsersView> getPendingUserByIdBasicInfo(Long id);
     Optional<UserDetailsDTO> getDetailedUserById(Long id);
+    Optional<Long> getUsersIdByEmail(String email);
 }

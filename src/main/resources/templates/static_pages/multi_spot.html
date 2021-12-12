@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de-DE" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/essential/head :: head">Head</head>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+  <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
+  <header th:replace="fragments/essential/header :: header">Navbar Header</header>
+
+  <section id="page-title" style="background-image: url('/images/multi_spot_page_main.png');">
+    <div class="col-4 center">
+      <div class="rounded" >
+        <h1 class="rounded animated fadeIn fast" style="color: #e35f5f; background-color: black">Multi Spot <i class="icon-copyright" style="font-size: small"></i></h1>
+      </div>
+    </div>
+  </section><!-- #page-title end -->
+  <!--i-circled icon-ok-->
+  <section id="content">
+    <div class="content-wrap">
+      <div class="container-fluid px-5 clearfix">
+        <div class="row col-mb-50">
+          <div class="w-100"></div>
+          <div class="col-md-8">
+            <h4>Mehrfarbig Siebdrucktransfer </h4>
+            <p>Mehrfarbiger Transferdruck mit der Möglichkeit, eine unbegrenzte Anzahl von Farben zu überlagern, einschließlich Farbgradienten, Pantone-Sonderfarben und Rasterbildern.</p>
+
+            <p>
+              Die Übertragung des Transfers erfolgt vollständig im Siebdruckverfahren und verleiht Ihrem Kleidungsstück ein feines, raffiniertes und präzises Finish, was die Farbe betrifft. Das Design kann eine unbegrenzte Anzahl von Farben enthalten, d.h. es kann 2-Farben-Druck für dunklere Stoffe oder einen komplizierten 20-Farben-Druck sein. Unabhängig von der gewünschten Option sind Präzision, Technik und Liebe zum Detail gleich wichtig für uns.
+            </p>
+            <p>
+            <h5>Wie können Sie eine Bestellung aufgeben?</h5>
+            Wenn Sie Ihre erste Bestellung bei uns aufgeben möchten, müssen Sie nur eine Vektordatei senden (denken Sie daran, dass wir Sie bei den Abschlusselementen Ihres Designs unterstützen können).
+            Sie müssen uns die Pantone-Farben, die Sie verwenden möchten, sowie die Größe und Menge der Logos mitteilen. Wir arbeiten in verschiedenen Transferbogen und können die Logos auf eine Art und Weise einordnen, die für Sie am besten geeignet ist.
+            Sie können sich unsere Formate und Preise in unserem <a href="/preisrechner">Online-Transferrechner</a> ansehen oder uns per E-Mail kontaktieren.
+            </p>
+
+            <p>
+            <ul class="clearfix">Jeder unserer Siebdrucktransfers bietet zusätzliche Optionen gemäß den Spezifikationen des verwendeten Textils:
+              <li class="icon-line-arrow-right"> Zusätzliche Schicht, die eine Sublimation des Drucks verhindert (Polyestertextil)</li>
+              <li class="icon-line-arrow-right"> Pulverschicht - für bessere Elastizität, Waschen bei höheren Temperaturen und niedrigeren Temperaturen</li>
+              <li class="icon-line-arrow-right"> Kann anstelle von weißem Papier auf transparente Folie gedruckt werden (zur besseren Positionierung auf dem Produkt)</li>
+              <li class="icon-line-arrow-right"> Farben mit Metalleffekt - Gold und Silber</li>
+            </ul>
+
+            </p>
+          </div>
+
+          <div class="col-md-4">
+            <h3>MultiSpot Bilder</h3>
+
+            <div class="masonry-thumbs grid-container grid-3 clearfix">
+              <a class="grid-item" href="/images/portfolio/4/5.jpg" data-lightbox="image">
+                <div class="grid-inner">
+                  <img src="/images/portfolio/4/5.jpg" alt="MultiSpot - Mehrfarbig Siebdrucktransfer">
+                  <div class="bg-overlay">
+                    <div class="bg-overlay-content dark">
+                      <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                    </div>
+                    <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                  </div>
+                </div>
+              </a>
+              <a class="grid-item" href="/images/portfolio/4/14-1.jpg" data-lightbox="image">
+                <div class="grid-inner">
+                  <img src="/images/portfolio/4/14-1.jpg" alt="Mehrfarbig Raster-Siebtrasnfer">
+                  <div class="bg-overlay">
+                    <div class="bg-overlay-content dark">
+                      <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                    </div>
+                    <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                  </div>
+                </div>
+              </a>
+              <a class="grid-item" href="/images/portfolio/4/10.jpg" data-lightbox="image">
+                <div class="grid-inner">
+                  <img src="/images/portfolio/4/10.jpg" alt="Mehrafarbig Plastisol-Transfer mit MetallEffekt">
+                  <div class="bg-overlay">
+                    <div class="bg-overlay-content dark">
+                      <i class="icon-line-plus h4 mb-0" data-hover-animate="fadeIn"></i>
+                    </div>
+                    <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="divider p-0 m-0"></div>
+  </section>
+
+  <section id="content">
+    <div class="container-fluid px-5 clearfix">
+      <div class="row col-mb-50">
+        <div class="col-md-8 pt-0">
+          <div class="tabs side-tabs mb-0 clearfix" id="tab-6">
+
+            <ul class="tab-nav tab-nav2 clearfix">
+              <li><a href="#tabs-21">Vorteile</a></li>
+              <li><a href="#tabs-22">Geeignete Materialien</a></li>
+              <li><a href="#tabs-23">Eigenschaften</a></li>
+              <li class="hidden-phone"><a href="#tabs-24">Extras</a></li>
+            </ul>
+
+            <div class="tab-container ml-4">
+              <div class="tab-content clearfix" id="tabs-21">
+                <ul class="clearfix">
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Unbegrenzte Anzahl von Farben</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Hohe Deckkraft bei dunkleren Stoffen</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Es besteht die Möglichkeit, dünne Elemente mit einer Größr von 0,4 mm zu drucken </li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Hohe Elastizität für Stretchstoffe</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Farbpräzision</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Möglichkeit, ein Fotorealistish Siebdrucktransfer mit Spot-Farben zu machen</li>
+                </ul>
+              </div>
+              <div class="tab-content clearfix" id="tabs-22">
+                <ul>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Baumwolle und Polyester</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> T-Shirts, Kappen, Rucksäcke, Sportbekleidung in helleren Farben</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Es besteht die Möglichkeit, Arbeitskleidung zu bedrucken – Siebdruckfarben auf Wasserbasis und Silikon</li>
+                </ul>
+              </div>
+              <div class="tab-content clearfix" id="tabs-23">
+                <ul>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Übertragung des Siebdrucks auf die Textilien bei 180°C</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Waschbeständigkeit – bei 40°C (mit der Möglichkeit für eine höhere Waschbeständigkeit)</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Das Transferpapier wird nach Ihrer Wahl kalt (empfohlen) oder heiß abgezogen</li>
+                </ul>
+              </div>
+              <div class="tab-content clearfix" id="tabs-24">
+                <ul>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Unterstützung bei der Fertigstellung des Entwurfs</li>
+                  <li style="list-style-type: none;" class="pb-1"><i class="icon-check-circle" style="color: #2dc26b"></i> Vektorisierung von Bitmap-Projekten</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <img class="img-fluid" src="/MultiSpot.png" style="height: 70%" alt="MultiSpot">
+        </div>
+      </div>
+    </div>
+    <div class=" p-4 m-0"></div>
+  </section>
+  <section id="content">
+    <div class="container-fluid px-5 clearfix">
+      <div class="row col-mb-50">
+        <div class="col-md-12 pt-0">
+
+          <div class="promo promo-dark promo-uppercase p-4 p-md-5 mb-5">
+            <div class="row align-items-center">
+              <div class="col-12 col-lg ">
+                <h3><span class="text-success animated fadeIn repeat-infinit slow">-20% Rabatt</span> bei Erstbestellung. Kontaktieren Sie uns hier</h3>
+              </div>
+              <div class="col-12 col-lg-auto mt-4 mt-lg-0">
+                <a href="/kontakt/" class="btn btn-lg btn-outline-success m-0">Kontakt</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="content">
+    <div class="container-fluid px-5 clearfix">
+      <div class="row col-mb-50">
+        <div class="col-md-12 pt-0">
+
+          <div class="promo mb-5">
+            <div class="row align-items-center m-4">
+              <div class="col-12 col-lg">
+                <h3>Berechnen Sie hier <span>einen Preis</span></h3>
+                <span>Mindestmenge - 25 gedruckte Bögen. Maximale Farben - unbegrenzt.</span>
+              </div>
+              <div class="col-12 col-lg-auto mt-4 mt-lg-0">
+                <a href="/preisrechner" class="button button-large button-circle m-0">Plastisoltransfer Preis</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer th:replace="fragments/essential/footer :: footer">Footer</footer>
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/functions.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+
+
+</body>
+</html>

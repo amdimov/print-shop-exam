@@ -8,6 +8,7 @@ import com.example.transferhall.service.InvoiceService;
 import com.example.transferhall.service.OrdersService;
 import com.example.transferhall.service.UsersService;
 import com.example.transferhall.util.exceptions.InvoiceNotFound;
+import com.example.transferhall.util.exceptions.UnauthorizedRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -37,18 +39,20 @@ public class UserController {
 
     @GetMapping("/profile")
     public String userProfile(Model model,
-                              @AuthenticationPrincipal SecurityUser user){
+                              @AuthenticationPrincipal SecurityUser user) {
         List<ProfileOrderView> orderViews =
                 ordersService.showOrdersInfo(user.getUsername());
+        Optional<Long> userId = usersService.getUsersIdByEmail(user.getUsername());
         model.addAttribute("order", orderViews);
+        model.addAttribute("userId", userId.get());
         return "/profile/user_profile";
     }
 
     @PostMapping("/profile")
     public String addInquiryOrOrder(@Valid AddInquiryOrOrderDTO addInquiryBind,
                                     BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
+                                    RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addInquiry", addInquiryBind);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addInquiry",
                     bindingResult);
@@ -56,39 +60,56 @@ public class UserController {
         }
         ordersService.addInquiryOrOrder(addInquiryBind);
         redirectAttributes.addFlashAttribute("orderSuccessful", true);
-        return "redirect:/user/profile#tab-quote";
+        return "redirect:/user/profile#tab-offers";
     }
 
     @ModelAttribute("addInquiry")
-    public AddInquiryOrOrderDTO addInquiryOrOrderBinding(){
+    public AddInquiryOrOrderDTO addInquiryOrOrderBinding() {
         return new AddInquiryOrOrderDTO();
     }
 
 
     @PreAuthorize("@ordersServiceImpl.isOwner(#principal.name, #id)")
     @GetMapping("/profile/order/{id}")
-    public String orderDetails(@PathVariable Long id, Model model, Principal principal){
+    public String orderDetails(@PathVariable Long id, Model model, Principal principal) {
         OrderDetailsDTO order = ordersService.getOrderById(id);
         model.addAttribute("order", order);
 
-        if (!order.getOrderStatus().equals(OrderStatusEnum.PENDING)){
+        if (!order.getOrderStatus().equals(OrderStatusEnum.PENDING)) {
             Optional<InvoiceDTO> invoice = invoiceService.findInvoiceByOrderId(id);
             invoice.ifPresent(invoiceDTO -> model.addAttribute("invoiceNumber",
-                invoiceDTO.getInvoiceNumber()));
+                    invoiceDTO.getInvoiceNumber()));
         }
         return "profile/order_details";
     }
 
-    @GetMapping("/profile/invoice/{invoiceNumber}")
-    private String invoice(
-                           @PathVariable String invoiceNumber,
-                           Model model){
-        if (invoiceNumber.isBlank() || invoiceNumber.isEmpty()){
+    @PreAuthorize("@ordersServiceImpl.isOwner(#principal.name, #id)")
+    @GetMapping("/profile/invoice/{id}/{invoiceNumber}")
+    public String invoice(
+            @PathVariable Long id,
+            @PathVariable String invoiceNumber,
+            Principal principal,
+            Model model) {
+        if (invoiceNumber.isBlank() || invoiceNumber.isEmpty()) {
             throw new InvoiceNotFound("Invoice for this order hasn't been created yet");
         }
 
-//        OrderDetailsDTO order = ordersService.getOrderById(id);
-//        Optional<InvoiceDTO> invoice = invoiceService.findInvoiceByOrderId(order.getId());
+        InvoiceDTO invoice = invoiceService.findInvoiceByInvoiceNumber(invoiceNumber);
+        model.addAttribute("invoice", invoice);
+        return "profile/invoice";
+    }
+
+    @GetMapping("/invoice/{userId}/{invoiceNumber}")
+    public String invoiceListOnProfile(
+            @PathVariable Long userId,
+            @PathVariable String invoiceNumber,
+            Principal principal,
+            Model model
+    ) {
+        Optional<Long> currentUserId = usersService.getUsersIdByEmail(principal.getName());
+        if (!Objects.equals(userId, currentUserId.get())){
+            throw new UnauthorizedRequest("Unauthorized request");
+        }
         InvoiceDTO invoice = invoiceService.findInvoiceByInvoiceNumber(invoiceNumber);
         model.addAttribute("invoice", invoice);
         return "profile/invoice";
@@ -96,26 +117,27 @@ public class UserController {
 
 
     @GetMapping("/company-details")
-    public String companyDetails(){
+    public String companyDetails() {
         return "profile/company_details";
     }
 
     @GetMapping("/shipping-address")
-    public String shippingAddress(){
+    public String shippingAddress() {
         return "profile/shipping_address";
     }
 
     @PatchMapping("/company-details")
     public String companyDetailsEdit(InvoiceDetailsDTO invoiceDetailsDTO, Principal principal,
-                                     RedirectAttributes redirectAttributes){
+                                     RedirectAttributes redirectAttributes) {
         Optional<InvoiceDetailsDTO> invoiceDetails =
                 usersService.editInvoiceDetailsOfUser(invoiceDetailsDTO, principal.getName());
         redirectAttributes.addFlashAttribute("invoiceDetails", invoiceDetails.get());
         return "redirect:/user/company-details";
     }
+
     @PatchMapping("/shipping-address")
     public String shippingDetailsEdit(ShippingDetailsDTO shippingDetailsDTO, Principal principal,
-                                     RedirectAttributes redirectAttributes){
+                                      RedirectAttributes redirectAttributes) {
         Optional<ShippingDetailsDTO> shippingDetails =
                 usersService.editShippingDetailsOfUser(shippingDetailsDTO, principal.getName());
         redirectAttributes.addFlashAttribute("shippingAddress", shippingDetails.get());
@@ -123,11 +145,12 @@ public class UserController {
     }
 
     @ModelAttribute(name = "invoiceDetails")
-    public InvoiceDetailsDTO invoiceDetailsDTO(Principal principal){
+    public InvoiceDetailsDTO invoiceDetailsDTO(Principal principal) {
         return usersService.getInvoiceDetails(principal.getName()).orElse(new InvoiceDetailsDTO());
     }
+
     @ModelAttribute(name = "shippingAddress")
-    public ShippingDetailsDTO shippingDetailsDTO(Principal principal){
+    public ShippingDetailsDTO shippingDetailsDTO(Principal principal) {
         return usersService.getShippingDetails(principal.getName()).orElse(new ShippingDetailsDTO());
     }
 

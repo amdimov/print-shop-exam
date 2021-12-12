@@ -15,5 +15,6 @@ public interface InvoiceRepository extends JpaRepository<InvoicesEntity, Long> {
     Optional<InvoicesEntity> findByPayedIsFalse();
     Optional<InvoicesEntity> findInvoicesEntityByInvoiceNumber(String invoiceNumber);
     Optional<InvoicesEntity> findInvoiceByOrdersId(Long orderId);
+    Optional<List<InvoicesEntity>> findInvoicesEntityByUsers_Id(Long usersId);
 
 }

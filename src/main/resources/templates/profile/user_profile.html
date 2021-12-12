@@ -11,12 +11,6 @@
 <div id="wrapper" class="clearfix">
     <div th:replace="fragments/essential/top_bar :: top_bar">Top Bar</div>
     <header th:replace="fragments/essential/header :: header">Navbar Header</header>
-
-    <!--    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>-->
-    <!--    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>-->
-    <!--    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>-->
-
-
     <!-- Content
 		============================================= -->
     <section id="content">
@@ -29,13 +23,6 @@
 
                         <img src="/images/icons/avatar.png" class="alignleft img-circle img-thumbnail my-0" alt="Avatar"
                              style="max-width: 84px;">
-
-                        <!--                        TODO - Show Principal's names-->
-                        <!--                        <div class="heading-block border-0">-->
-                        <!--                            <h3 th:text="|${@currentUser.getFirstName()} ${@currentUser.getLastName()} - ${@currentUser.getCompanyName()}|">-->
-                        <!--                                Your name</h3>-->
-                        <!--                            <span th:text="'Email: '+ ${@currentUser.getEmail()}">Your Profile Info</span>-->
-                        <!--                        </div>-->
                         <div class="heading-block border-0">
                             <h3 th:text="${#authentication.getPrincipal().getCompanyName()}">Company Name</h3>
                             <span th:text="${#authentication.name}">Email</span>
@@ -50,54 +37,26 @@
                                 <div class="tabs tabs-alt clearfix" id="tabs-profile">
 
                                     <ul class="tab-nav clearfix">
+                                        <li><a href="#tab-quote"><i class="icon-pencil2"></i> Send Inquiry</a></li>
+                                        <li><a href="#tab-offers"><i class="icon-reply"></i> My Offers&Orders</a></li>
                                         <li><a href="#tab-invoices"><i class="icon-rss2"></i> Invoices</a></li>
-                                        <li><a href="#tab-quote"><i class="icon-pencil2"></i> Get an Offer</a></li>
-                                        <li><a href="#tab-replies"><i class="icon-reply"></i> Replies</a></li>
-                                        <li><a href="#tab-connections"><i class="icon-users"></i> Connections</a></li>
+                                        <!--                                        <li><a href="#tab-connections"><i class="icon-users"></i> Connections</a></li>-->
                                     </ul>
 
                                     <div class="tab-container">
 
-                                        <div class="tab-content clearfix" id="tab-invoices">
-
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-                                                harum ea quo! Nulla fugiat earum, sed corporis amet iste non, id facilis
-                                                dolorum, suscipit, deleniti ea. Nobis, temporibus magnam doloribus.
-                                                Reprehenderit necessitatibus esse dolor tempora ea unde, itaque odit.
-                                                Quos.</p>
-
-                                            <table class="table table-bordered table-striped">
-                                                <thead>
-                                                <tr>
-                                                    <th>Time</th>
-                                                    <th>Activity</th>
-                                                    <th>Invoice value</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr th:each="e : ${order}">
-                                                    <td>
-                                                        <code th:text="${#temporals.format(e.created, 'dd-MMM-yyyy')}">5/23/2021</code>
-                                                    </td>
-                                                    <td th:text="${e.orderDescription}">Payment for VPS2 completed</td>
-                                                    <td th:text="${e.totalPrice}">Payment for VPS2 completed</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </div>
                                         <div class="tab-content clearfix" id="tab-quote">
 
                                             <!-- Quotes
                                             ============================================= -->
                                             <div class="row gutter-40 posts-md mt-4">
-
                                                 <div class="entry col-12">
+
                                                     <h3>Send an inquiry</h3>
                                                     <p>You will receive an email and an update in your inquiry details
                                                         below.
                                                         You can send an inquiry for single print or bundled sheet</p>
-                                                    <form th:action="@{/user/profile#tab-quote}" th:method="post"
+                                                    <form th:action="@{/user/profile#tab-offers}" th:method="post"
                                                           th:object="${addInquiry}"
                                                           enctype="multipart/form-data">
                                                         <div class="form-row">
@@ -133,7 +92,6 @@
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-md-4">
-                                                                <!--  TODO Add to email-->
                                                                 <label
                                                                         for="apparelColor">Apparel Color</label>
                                                                 <select id="apparelColor" th:field="*{apparelColor}"
@@ -177,268 +135,70 @@
                                                         <button type="submit" class="btn btn-primary">Send Inquiry
                                                         </button>
                                                     </form>
-                                                    <div>
-                                                        <div th:if="${orderSuccessful}" class="alert alert-success">
-                                                            <i class="icon-upload"></i><strong>CONGRATS!</strong> Your
-                                                            inquiry has been sent successfully.
-                                                        </div>
-                                                    </div>
+
                                                     <div class="divider"></div>
-
-                                                    <!--                                                    INQUIRY TABLE-->
-                                                    <div class="tab-container">
-                                                        <div class="tab-content clearfix table-responsive" id="tab-feeds">
-                                                            <h3>Your inquiries and orders</h3>
-                                                            <p>Here you can find all of your current and previous quotes
-                                                                and
-                                                                orders</p>
-                                                            <table class="table table-bordered table-hover">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th>Date</th>
-                                                                    <th>Order Name</th>
-                                                                    <th>Status</th>
-                                                                    <th>Quoted Price</th>
-                                                                    <th>More details</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr th:each="e : ${order}">
-                                                                    <td>
-                                                                        <code th:text="${#temporals.format(e.created, 'dd-MMM-yyyy')}">5/23/2021</code>
-                                                                    </td>
-                                                                    <td th:text="${e.orderName}">Order Description
-                                                                        Content
-                                                                    </td>
-                                                                    <td th:text="${e.orderStatus.name()}">NO</td>
-                                                                    <td th:text="${e.totalPrice}">Order quote</td>
-                                                                    <td><a target="_blank"
-                                                                           th:href="@{/user/profile/order/{id}(id = ${e.getId()})}">
-                                                                        <button class="btn btn-success">Check Order
-                                                                        </button>
-                                                                    </a></td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <div class="tab-content clearfix" id="tab-replies">
 
-                                            <div class="clear topmargin-sm"></div>
-                                            <ol class="commentlist border-0 m-0 p-0 clearfix">
-                                                <li class="comment even thread-even depth-1" id="li-comment-1">
-                                                    <div id="comment-1" class="comment-wrap clearfix">
-                                                        <div class="comment-meta">
-                                                            <div class="comment-author vcard">
-																	<span class="comment-avatar clearfix">
-																	<img alt='Image'
-                                                                         src='https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60'
-                                                                         class='avatar avatar-60 photo avatar-default'
-                                                                         height='60' width='60'/></span>
-                                                            </div>
+                                        <div class="tab-content clearfix" id="tab-offers">
+
+                                            <!--OFFERS TABLE-->
+                                            <div class="tab-container">
+                                                <div class="tab-content clearfix table-responsive">
+
+                                                    <div>
+                                                        <div th:if="${orderSuccessful}" class="alert alert-success">
+                                                            <i class="icon-upload"></i><strong>CONGRATS!</strong> Your
+                                                            inquiry has been sent successfully. Your quoted price will
+                                                            appear in teh table below.
                                                         </div>
-                                                        <div class="comment-content clearfix">
-                                                            <div class="comment-author">John Doe<span><a href="#"
-                                                                                                         title="Permalink to this comment">April 24, 2012 at 10:46 am</a></span>
-                                                            </div>
-                                                            <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra
-                                                                augue. Nullam id dolor id nibh ultricies vehicula ut id
-                                                                elit. Integer posuere erat a ante venenatis dapibus
-                                                                posuere velit aliquet.</p>
-                                                            <a class='comment-reply-link' href='#'><i
-                                                                    class="icon-reply"></i></a>
-                                                        </div>
-                                                        <div class="clear"></div>
                                                     </div>
-                                                    <ul class='children'>
-                                                        <li class="comment byuser comment-author-_smcl_admin odd alt depth-2"
-                                                            id="li-comment-3">
-                                                            <div id="comment-3" class="comment-wrap clearfix">
-                                                                <div class="comment-meta">
-                                                                    <div class="comment-author vcard">
 
-																			<span class="comment-avatar clearfix">
-																			<img alt='Image'
-                                                                                 src='https://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=40&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G'
-                                                                                 class='avatar avatar-40 photo'
-                                                                                 height='40' width='40'/></span>
-
-                                                                    </div>
-                                                                </div>
-                                                                <div class="comment-content clearfix">
-                                                                    <div class="comment-author"><a href='#'
-                                                                                                   rel='external nofollow'
-                                                                                                   class='url'>SemiColon</a><span><a
-                                                                            href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span>
-                                                                    </div>
-
-                                                                    <p>Nullam id dolor id nibh ultricies vehicula ut id
-                                                                        elit.</p>
-
-                                                                    <a class='comment-reply-link' href='#'><i
-                                                                            class="icon-reply"></i></a>
-                                                                </div>
-                                                                <div class="clear"></div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1"
-                                                    id="li-comment-2">
-                                                    <div class="comment-wrap clearfix">
-                                                        <div class="comment-meta">
-                                                            <div class="comment-author vcard">
-																	<span class="comment-avatar clearfix">
-																	<img alt='Image'
-                                                                         src='https://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G'
-                                                                         class='avatar avatar-60 photo' height='60'
-                                                                         width='60'/></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="comment-content clearfix">
-                                                            <div class="comment-author"><a
-                                                                    href='https://themeforest.net/user/semicolonweb'
-                                                                    rel='external nofollow'
-                                                                    class='url'>SemiColon</a><span><a href="#"
-                                                                                                      title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span>
-                                                            </div>
-
-                                                            <p>Integer posuere erat a ante venenatis dapibus posuere
-                                                                velit aliquet.</p>
-
-                                                            <a class='comment-reply-link' href='#'><i
-                                                                    class="icon-reply"></i></a>
-                                                        </div>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </li>
-
-                                            </ol>
+                                                    <h3>Your inquiries and orders</h3>
+                                                    <p>Here you can find all of your current and previous quotes
+                                                        and
+                                                        orders</p>
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Order Name</th>
+                                                            <th>Status</th>
+                                                            <th>Quoted Price</th>
+                                                            <th>More details</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="e : ${order}">
+                                                            <td>
+                                                                <code th:text="${#temporals.format(e.created, 'dd-MMM-yyyy')}">5/23/2021</code>
+                                                            </td>
+                                                            <td th:text="${e.orderName}">Order Description
+                                                                Content
+                                                            </td>
+                                                            <td th:text="${e.orderStatus.name()}">NO</td>
+                                                            <td th:text="${e.totalPrice}">Order quote</td>
+                                                            <td><a target="_blank"
+                                                                   th:href="@{/user/profile/order/{id}(id = ${e.getId()})}">
+                                                                <button class="btn btn-success">Check Order
+                                                                </button>
+                                                            </a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
                                         </div>
-                                        <div class="tab-content clearfix" id="tab-connections">
 
-                                            <div class="row topmargin-sm">
-                                                <div class="col-lg-3 col-md-6 bottommargin">
+                                        <div class="tab-content clearfix" id="tab-invoices">
 
-                                                    <div class="team">
-                                                        <div class="team-image">
-                                                            <img src="images/team/3.jpg" alt="John Doe">
-                                                        </div>
-                                                        <div class="team-desc">
-                                                            <div class="team-title"><h4>John Doe</h4><span>CEO</span>
-                                                            </div>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-facebook">
-                                                                <i class="icon-facebook"></i>
-                                                                <i class="icon-facebook"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-twitter">
-                                                                <i class="icon-twitter"></i>
-                                                                <i class="icon-twitter"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-gplus">
-                                                                <i class="icon-gplus"></i>
-                                                                <i class="icon-gplus"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6 bottommargin">
-
-                                                    <div class="team">
-                                                        <div class="team-image">
-                                                            <img src="images/team/2.jpg" alt="Josh Clark">
-                                                        </div>
-                                                        <div class="team-desc">
-                                                            <div class="team-title"><h4>Josh Clark</h4>
-                                                                <span>Co-Founder</span></div>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-facebook">
-                                                                <i class="icon-facebook"></i>
-                                                                <i class="icon-facebook"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-twitter">
-                                                                <i class="icon-twitter"></i>
-                                                                <i class="icon-twitter"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-gplus">
-                                                                <i class="icon-gplus"></i>
-                                                                <i class="icon-gplus"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6 bottommargin">
-
-                                                    <div class="team">
-                                                        <div class="team-image">
-                                                            <img src="images/team/8.jpg" alt="Mary Jane">
-                                                        </div>
-                                                        <div class="team-desc">
-                                                            <div class="team-title"><h4>Mary Jane</h4><span>Sales</span>
-                                                            </div>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-facebook">
-                                                                <i class="icon-facebook"></i>
-                                                                <i class="icon-facebook"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-twitter">
-                                                                <i class="icon-twitter"></i>
-                                                                <i class="icon-twitter"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-gplus">
-                                                                <i class="icon-gplus"></i>
-                                                                <i class="icon-gplus"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-lg-3 col-md-6">
-
-                                                    <div class="team">
-                                                        <div class="team-image">
-                                                            <img src="images/team/4.jpg" alt="Nix Maxwell">
-                                                        </div>
-                                                        <div class="team-desc">
-                                                            <div class="team-title"><h4>Nix Maxwell</h4>
-                                                                <span>Support</span></div>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-facebook">
-                                                                <i class="icon-facebook"></i>
-                                                                <i class="icon-facebook"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-twitter">
-                                                                <i class="icon-twitter"></i>
-                                                                <i class="icon-twitter"></i>
-                                                            </a>
-                                                            <a href="#"
-                                                               class="social-icon inline-block si-small si-light si-rounded si-gplus">
-                                                                <i class="icon-gplus"></i>
-                                                                <i class="icon-gplus"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
+                                            <div class="tab-container">
+                                                <div class="tab-content clearfix table-responsive" id="root">
+                                                    <h3>Proforma Invoices</h3>
+                                                    <p>Here are all of your invoices. *JS FETCH</p>
                                                 </div>
                                             </div>
 
@@ -459,69 +219,27 @@
                     <div class="col-md-3">
 
                         <div class="list-group">
-                            <a href="/user/profile" style="background-color: lightgray" class="list-group-item list-group-item-action d-flex justify-content-between">
+                            <a href="/user/profile" style="background-color: lightgray"
+                               class="list-group-item list-group-item-action d-flex justify-content-between">
                                 <div>Profile</div>
                                 <i class="icon-user"></i></a>
-                            <a href="/user/company-details" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                <div>Company Details</div>
-                                <i class="icon-laptop2"></i></a>
-                            <a href="/user/shipping-address" class="list-group-item list-group-item-action d-flex justify-content-between">
+                            <a href="/user/company-details"
+                               class="list-group-item list-group-item-action d-flex justify-content-between">
+                                <div>Company/Billing Details</div>
+                                <i class="icon-building"></i></a>
+                            <a href="/user/shipping-address"
+                               class="list-group-item list-group-item-action d-flex justify-content-between">
                                 <div>Shipping Address</div>
                                 <i class="icon-envelope2"></i></a>
-                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                <div>Billing</div>
-                                <i class="icon-credit-cards"></i></a>
-                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                <div>Settings</div>
-                                <i class="icon-cog"></i></a>
-                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">
-                                <div>Logout</div>
-                                <i class="icon-line2-logout"></i></a>
+                            <!--                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between">-->
+                            <!--                                <div>Logout</div>-->
+                            <!--                                <i class="icon-line2-logout"></i></a>-->
                         </div>
 
-                        <div class="fancy-title topmargin title-border">
-                            <h4>About Me</h4>
-                        </div>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum laboriosam, dignissimos
-                            veniam obcaecati. Quasi eaque, odio assumenda porro explicabo laborum!</p>
-
-                        <div class="fancy-title topmargin title-border">
-                            <h4>Social Profiles</h4>
-                        </div>
-
-                        <a href="#" class="social-icon si-facebook si-small si-rounded si-light" title="Facebook">
-                            <i class="icon-facebook"></i>
-                            <i class="icon-facebook"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-gplus si-small si-rounded si-light" title="Google+">
-                            <i class="icon-gplus"></i>
-                            <i class="icon-gplus"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-dribbble si-small si-rounded si-light" title="Dribbble">
-                            <i class="icon-dribbble"></i>
-                            <i class="icon-dribbble"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-flickr si-small si-rounded si-light" title="Flickr">
-                            <i class="icon-flickr"></i>
-                            <i class="icon-flickr"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-linkedin si-small si-rounded si-light" title="LinkedIn">
-                            <i class="icon-linkedin"></i>
-                            <i class="icon-linkedin"></i>
-                        </a>
-
-                        <a href="#" class="social-icon si-twitter si-small si-rounded si-light" title="Twitter">
-                            <i class="icon-twitter"></i>
-                            <i class="icon-twitter"></i>
-                        </a>
 
                     </div>
-                    <div id="root"></div>
+
+                    <!--                    <div id="root"></div>-->
                 </div>
 
             </div>
@@ -543,80 +261,77 @@
 <script src="/js/plugins.min.js"></script>
 <script src="/js/functions.js"></script>
 
-<script type="text/babel">
-    // <tr th:each="e : ${orderInfo}">
-    //     <td>
-    //         <code th:text="${e.created}">5/23/2021</code>
-    //     </td>
-    //     <td th:text="${e.description}">Payment for VPS2 completed</td>
-    //     <td th:text="${e.totalPrice}">Payment for VPS2 completed</td>
-    // </tr>
+<script type="text/babel" th:inline="javascript">
+    let userId = [[${userId}]];
+
+
+    let api = fetch(`http://localhost:8080/api/${userId}/invoices`)
+        .then(result => result.json());
+
+    class TableRows extends React.Component {
+        constructor() {
+            super();
+            this.state = {rows: []};
+
+        }
+
+        componentDidMount() {
+            api.then(rows => this.setState({rows}));
+        }
+
+        render() {
+            return (
+                <tbody>
+
+                {
+                    this.state.rows.map(row =>
+                        <tr>
+                            <td key={row.invoiceNumber}>{row.issuedDate}</td>
+                            <td key={row.invoiceNumber}>{row.invoiceNumber}</td>
+                            <td key={row.invoiceNumber}>{row.totalAmount} EUR</td>
+                            <td>
+                                <a target="_blank"
+                                   href={`/user/invoice/${userId}/` + row.invoiceNumber}>
+                                    <button className="btn btn-success">Invoice</button>
+                                </a>
+                            </td>
+                        </tr>
+                    )
+                }
+
+                </tbody>
+            );
+        }
+    }
+
+    function TableTitles() {
+        return (
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Invoice Number</th>
+                <th>Value</th>
+                <th>Invoice</th>
+            </tr>
+            </thead>
+        );
+    }
+
+    function InvoiceTable() {
+        return (
+            <table className="table table-bordered table-hover">
+                <TableTitles/>
+                <TableRows/>
+            </table>
+        );
+    }
+
+    ReactDOM.render(<InvoiceTable/>, document.getElementById('root'));
+
 
     // const e = React.createElement;
-    // const api = fetch("http://localhost:8080/api/orders").then(e => e.json());
-    // console.log(api);
-    // function AppFunc(){
-    //     return (
-    //            api.then(result => {
-    //                <div>
-    //                   result.description
-    //                </div>
-    //            }
-    //     )
-    // }
-    // class App extends React.Component{
-    //     constructor(props){
-    //         super(props);
-    //         this.state = {
-    //             isLoaded: true,
-    //             items: []
-    //         }
-    //     }
-    //
-    //     componentDidMount(){
-    //         fetch("http://localhost:8080/api/orders").then(e => e.json())
-    //             .then(
-    //                 (result) =>{
-    //                     this.setState({
-    //                         isLoaded: true,
-    //                         items: result
-    //                     });
-    //                 },
-    //                 (errors) =>{
-    //                     this.setState({
-    //                         isLoaded: true,
-    //                         errors
-    //                     });
-    //                 }
-    //             )
-    //     }
-    //
-    //     render(){
-    //         const { error, isLoaded, items } = this.state;
-    //         if(error){
-    //             return <div>Error: {error.message}</div>
-    //         }else if(!isLoaded){
-    //             return <div>Loading...</div>
-    //         }else{
-    //             return(
-    //                 <tr>
-    //                     {items.map(e => (
-    //                         <p>
-    //                             <td>
-    //                                 {e.created}
-    //                             </td>
-    //                             <td>{e.created}</td>
-    //                             <td>{e.totalPrice}</td>
-    //                         </p>
-    //                     ))}
-    //                 </tr>
-    //             );
-    //         }
-    //     }
-    // }
-    //
-    // const domContainer = document.querySelector('#root');
-    // ReactDOM.render(<App />, document.getElementById('orders'));
+    // const api = fetch(`http://localhost:8080/api/${userId.toString()}/invoices`).then(e => e.json());
+
 </script>
 
 </body>

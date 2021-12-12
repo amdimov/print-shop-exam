@@ -1,4 +1,4 @@
-package com.example.transferhall.service.email;
+package com.example.transferhall.web.email;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,7 +15,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void setSimpleMessage(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@transferhall.de");
+        message.setFrom("contact_noreply@transferhall.de");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);

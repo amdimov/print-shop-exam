@@ -25,11 +25,6 @@ public class GalleryController {
         this.galleryService = galleryService;
     }
 
-//    @GetMapping
-//    public String showGallery(Model model){
-//        model.addAttribute("image", galleryService.fetchAllImages());
-//        return "gallery";
-//    }
     @GetMapping("/{pageNo}")
     public String showGallery(
             @PathVariable(required = false) Optional<Integer> pageNo,

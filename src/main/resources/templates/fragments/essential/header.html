@@ -31,7 +31,7 @@ th:fragment="header">
 
                     <ul class="menu-container">
                         <li id="heatTransferWhite" class="menu-item mega-menu mega-menu-small">
-                            <a class="menu-link" href=""><div style="color: #e35f5f;">Siebdrucktransfer</div><span style="color: #e35f5f">Unsere Produkte</span></a>
+                            <a class="menu-link" href=""><div style="color: #e35f5f;" th:text="#{heattransfer}">Siebdrucktransfer</div><span style="color: #e35f5f" th:text="#{sub_heattransfer}">Unsere Produkte</span></a>
                             <div class="mega-menu-content mega-menu-style-2">
                                 <div class="container">
                                     <div class="row">
@@ -49,7 +49,7 @@ th:fragment="header">
                                                         <article class="portfolio-item col-lg-1-3 col-md-4 col-sm-6 col-12 pf-media pf-icons">
                                                             <div class="grid-inner">
                                                                 <div class="portfolio-image">
-                                                                    <a href="/single-spot/">
+                                                                    <a href="/services/single-spot">
                                                                         <img src="/images/SingleSpot.png" alt="Single Spot | Einfarbig-Transfer">
                                                                     </a>
 
@@ -65,7 +65,7 @@ th:fragment="header">
                                                         <article class="portfolio-item col-lg-1-3 col-md-4 col-sm-6 col-12 pf-illustrations">
                                                             <div class="grid-inner">
                                                                 <div class="portfolio-image">
-                                                                    <a href="/multi-spot">
+                                                                    <a href="/services/multi-spot">
                                                                         <img src="/images/MultiSpot.png" alt="Multi Spot | Mehrfabrigtransfer">
                                                                     </a>
 
@@ -80,7 +80,7 @@ th:fragment="header">
                                                         <article class="portfolio-item col-lg-1-3 col-md-4 col-sm-6 col-12 pf-uielements pf-media">
                                                             <div class="grid-inner">
                                                                 <div class="portfolio-image">
-                                                                    <a href="/photo-silk">
+                                                                    <a href="/services/photo-silk">
                                                                         <img src="/images/PhotoSilk.png" alt="Photo Silk | Vollfarbigertransfer">
                                                                     </a>
 
@@ -103,7 +103,7 @@ th:fragment="header">
 
                         <!--  Support-->
                         <li class="menu-item">
-                            <a class="menu-link" href=""><div>Support</div><span>Erfahren Sie mehr</span></a>
+                            <a class="menu-link" href=""><div th:text="#{support}">Support</div><span th:text="#{sub_support}">Erfahren Sie mehr</span></a>
                             <ul class="sub-menu-container">
                                 <li class="menu-item">
                                     <a class="menu-link" href="/bereiten-sie-ihre-dateien-vor"><div><i class="icon-clip"></i>Bereiten Sie Ihre Dateien vor</div></a>
@@ -126,7 +126,7 @@ th:fragment="header">
                             </ul>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href=""><div>Information</div><span>Erfahren Sie mehr</span></a>
+                            <a class="menu-link" href=""><div th:text="#{information}">Information</div><span th:text="#{sub_information}">Erfahren Sie mehr</span></a>
                             <ul class="sub-menu-container">
                                 <li class="menu-item">
                                     <a class="menu-link" href="/preisrechner"><div><i class="icon-calculator"></i>Preisberechnung</div></a>
@@ -149,13 +149,13 @@ th:fragment="header">
                             </ul>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="/nachrichten"><div>Nachrichten</div><span>Ankündigungen</span></a>
+                            <a class="menu-link" href="/nachrichten"><div th:text="#{news}">Nachrichten</div><span th:text="#{sub_news}">Ankündigungen</span></a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="/uber-uns"><div>Über uns</div><span>Unsere Siebdruckerei</span></a>
+                            <a class="menu-link" href="/uber-uns"><div th:text="#{about_us}">Über uns</div><span th:text="#{sub_about_us}">Unsere Siebdruckerei</span></a>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" href="/kontakt"><div>Kontakt</div><span>In Verbindung treten</span></a>
+                            <a class="menu-link" href="/kontakt"><div th:text="#{contact}">Kontakt</div><span th:text="#{sub_contact}">In Verbindung treten</span></a>
                         </li>
                     </ul>
 

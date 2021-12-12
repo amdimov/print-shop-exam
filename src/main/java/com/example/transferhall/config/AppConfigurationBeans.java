@@ -1,6 +1,7 @@
 package com.example.transferhall.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,6 +16,10 @@ import java.util.logging.Logger;
 
 @Configuration
 public class AppConfigurationBeans {
+    @Value("${spring.mail.username}")
+    private String email;
+    @Value("${spring.mail.password}")
+    private String password;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -31,8 +36,8 @@ public class AppConfigurationBeans {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("de16.fcomet.com");
         mailSender.setPort(587);
-//        mailSender.setUsername();
-//        mailSender.setPassword();
+        mailSender.setUsername(this.email);
+        mailSender.setPassword(this.password);
 
 
         Properties props = mailSender.getJavaMailProperties();

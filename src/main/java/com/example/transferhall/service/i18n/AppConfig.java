@@ -1,5 +1,4 @@
-package com.example.transferhall.i18n;
-import org.apache.tomcat.util.descriptor.LocalResolver;
+package com.example.transferhall.service.i18n;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,16 +7,16 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Configuration
 public class AppConfig {
 
-    @Bean
+    @Bean(name = "localeResolver")
     public LocaleResolver localeResolver(){
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
-        cookieLocaleResolver.setCookieName("langCookie");
+        cookieLocaleResolver.setCookieName("lang");
+        cookieLocaleResolver.setDefaultLocale(Locale.GERMAN);
         return cookieLocaleResolver;
     }
 

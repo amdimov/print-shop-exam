@@ -71,15 +71,15 @@ public class SeedDB implements CommandLineRunner {
             return;
         }
         this.user = new UsersEntity();
-        user.setFirstName("Alex").setLastName("Dimov")
-                .setEmail("amdimov@gmail.com").setCompanyName("Megaprint Transfer")
+        user.setFirstName("Admin").setLastName("Adminov")
+                .setEmail("admin@admin.com").setCompanyName("Megaprint Transfers")
                 .setRoles(
                         Set.of(
                                 rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.ADMIN),
                                 rolesRepository.getUserRolesEntitiesByRole(UserRoleEnum.USER)
                         )
                 )
-                .setPassword(passwordEncoder.encode("bulgariavarna"));
+                .setPassword(passwordEncoder.encode("admin"));
         user.setInvoiceDetails(new InvoiceDetailsEntity().setCompanyName(user.getCompanyName())
                 .setCountry("Deutschland"));
         userRepository.save(user);

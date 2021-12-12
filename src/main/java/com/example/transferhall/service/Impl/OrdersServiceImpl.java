@@ -180,21 +180,23 @@ public class OrdersServiceImpl implements OrdersService {
         totalAmountOfInvoice = mapOrdersAndGetTotalAmount(selectedOrders, orders, totalAmountOfInvoice);
         ordersRepository.saveAll(orders);
 
-        if (userHasNoInvoiceOrNoOtherPayed(user)) {
-            InvoicesEntity invoice = makeNewInvoice(user, totalAmountOfInvoice, orders);
-            invoiceRepository.save(invoice);
-            return Optional.of(modelMapper.map(invoice, InvoiceDTO.class));
-        }else {
-            Optional<InvoicesEntity> editInvoice = invoiceRepository
-                    .findByPayedIsFalse();
-            if (editInvoice.isPresent()){
-                editInvoice(user, totalAmountOfInvoice, editInvoice);
-                orders.forEach(order -> order.setInvoices(editInvoice.get()));
-                invoiceRepository.save(editInvoice.get());
-                return Optional.of(modelMapper.map(editInvoice.get(), InvoiceDTO.class));
-            }
-            return Optional.empty();
-        }
+
+        InvoicesEntity invoice = makeNewInvoice(user, totalAmountOfInvoice, orders);
+        invoiceRepository.save(invoice);
+        return Optional.of(modelMapper.map(invoice, InvoiceDTO.class));
+
+        //TODO after exam
+//        else {
+//            Optional<InvoicesEntity> editInvoice = invoiceRepository
+//                    .findByPayedIsFalse();
+//            if (editInvoice.isPresent()){
+//                editInvoice(user, totalAmountOfInvoice, editInvoice);
+//                orders.forEach(order -> order.setInvoices(editInvoice.get()));
+//                invoiceRepository.save(editInvoice.get());
+//                return Optional.of(modelMapper.map(editInvoice.get(), InvoiceDTO.class));
+//            }
+//        return Optional.empty();
+//        }
     }
 
     private void editInvoice(UsersEntity user, BigDecimal totalAmountOfInvoice, Optional<InvoicesEntity> editInvoice) {
@@ -232,9 +234,10 @@ public class OrdersServiceImpl implements OrdersService {
         return invoice;
     }
 
-    private boolean userHasNoInvoiceOrNoOtherPayed(UsersEntity user){
-        return user.getInvoices().stream().allMatch(InvoicesEntity::getPayed);
-    }
+    //TODO after exam
+//    private boolean userHasNoInvoiceOrNoOtherPayed(UsersEntity user){
+//        return user.getInvoices().stream().allMatch(InvoicesEntity::getPayed);
+//    }
 
     private boolean isAdmin(UsersEntity usersEntity) {
         return usersEntity.getRoles()

@@ -9,7 +9,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -38,5 +41,15 @@ public class InvoiceServiceImpl implements InvoiceService {
                 invoiceEntity.map(invoice -> modelMapper.map(invoice, InvoiceDTO.class))
                 .orElseThrow(()-> new InvoiceNotFound("No invoice for this order ID"))
         );
+    }
+
+    @Transactional
+    @Override
+    public List<InvoiceDTO> getAllInvoicesOfUser(Long userId) {
+        Optional<List<InvoicesEntity>> invoices = invoiceRepository.findInvoicesEntityByUsers_Id(userId);
+        return invoices.map(invoiceList -> invoiceList.stream().map(list -> modelMapper.map(list, InvoiceDTO.class))
+                        .sorted(Comparator.comparing(InvoiceDTO::getTotalAmount))
+                        .collect(Collectors.toList()))
+                .orElse(null);
     }
 }

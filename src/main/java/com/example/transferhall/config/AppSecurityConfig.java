@@ -28,8 +28,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            .antMatchers("/login", "/", "/register", "/transfer-galerie/**",
-                    "/custom-transfers/**", "/about-us", "/information/**", "/kontakt"
+            .antMatchers("/login", "/", "/register", "/transfer-galerie/**","/preisrechner",
+                    "/services/**", "/about-us", "/information/**", "/kontakt/**"
                     , "/support/**", "/i18n", "/test-gd").permitAll()
                 //Testing Cloudinary
              .antMatchers("/cloudinary/add", "/cloudinary/all", "/cloudinary/delete").permitAll()
